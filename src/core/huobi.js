@@ -26,9 +26,7 @@ module.exports = class Huobi {
             Timestamp: moment.utc().format('YYYY-MM-DDTHH:mm:ss')
         };
 
-        if(method === 'GET') {
-            params = Object.assign(params, data);
-        }
+        params = method === 'GET' ? Object.assign(params, data) : params;
 
         params.Signature = this.sign({
             method,
@@ -50,7 +48,7 @@ module.exports = class Huobi {
             return res.data;
         }, err => {
             console.log(`${moment.utc().format('YYYY-MM-DDTHH:mm:ss')} error: ${path}`);
-            console.log(err)
+            console.error(err)
 
             throw err;
         });

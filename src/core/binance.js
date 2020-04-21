@@ -1,6 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
-const crypto = require('crypto');
+const querystring = require('querystring');
+const core = require('./core');
 
 module.exports = class Binance {
     constructor(host, apiKey, apiSecret) {
@@ -9,7 +10,41 @@ module.exports = class Binance {
         this.apiSecret = apiSecret;
     }
 
-    sign(data) {}
+    sign(data) {
+        const query = querystring.encode(data);
+        const signature = core.hmac(query, this.apiSecret, 'sha256', 'hex');
 
-    async invoke() {}
+        return signature;
+    }
+
+    async invoke(method, path, data = {}, authType=true) {
+        let headers = {};
+
+        if(authType) {
+            data.timestamp = Date.now();
+            data.signature = this.sign(data);
+
+            headers = {
+                'X-MBX-APIKEY': this.apiKey
+            };
+        }
+
+        const resp = await axios({
+            method: method,
+            url: `${this.host}${path}`,
+            headers,
+            timeout: 34000,
+            params: method === 'GET' ? data : null,
+            data: method === 'POST' ? this.queryString(data) : null
+        }).then(res => {
+            return res.data;
+        }, err => {
+            console.log(`${moment.utc().format('YYYY-MM-DDTHH:mm:ss')} error: ${path}`);
+            console.error(err)
+
+            throw err;
+        });
+
+        return resp;
+    }
 }
