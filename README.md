@@ -12,7 +12,7 @@ Using yarn:
 $ yarn add tradex
 ```
 
-Using npm:
+Or using npm:
 
 ```
 $ npm install tradex
