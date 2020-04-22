@@ -3,7 +3,7 @@ const Binance = require('./tradex.binance');
 const Okex = require('./tradex.okex');
 
 module.exports = class Tradex {
-    constructor({ type, host }) {
+    constructor({ id, host, accessKey, secretKey }) {
 
         const Klass = {
             huobi: Huobi,
@@ -11,13 +11,23 @@ module.exports = class Tradex {
             okex: Okex
         };
 
-        this.tradex = new Klass[type]({
+        this.tradex = new Klass[id]({
             host,
+            accessKey,
+            secretKey
         });
     }
 
     getPrice(symbol) {
         return this.tradex.getPrice(symbol);
+    }
+
+    getBalance(currency) {
+        return this.tradex.getBalance(currency);
+    }
+
+    getBalances(currencies) {
+        return this.tradex.getBalances(currencies);
     }
 
     buy({ symbol, amount, price }) {

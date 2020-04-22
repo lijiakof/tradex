@@ -35,7 +35,7 @@ module.exports = class Binance {
             headers,
             timeout: 34000,
             params: method === 'GET' ? data : null,
-            data: method === 'POST' ? this.queryString(data) : null
+            data: method === 'POST' ? querystring.encode(data) : null
         }).then(res => {
             return res.data;
         }, err => {
