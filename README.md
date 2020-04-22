@@ -44,7 +44,7 @@ console.log(account);
 
 ### Supported Exchange Markets
 
-| Name | id | Document | API |
+| Name | id | Document |
 | ---- | ---- | ---- |
 | Binance | binance | [doc](https://binance-docs.github.io/apidocs/spot/en/) |
 | Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
