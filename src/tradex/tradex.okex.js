@@ -1,19 +1,74 @@
 const Okex = require('../core/okex');
 
-module.exports = class Okex {
+module.exports = class TradexOkex {
     constructor({ host, apiKey, secretKey, passPhrase }) {
         this.okex = new Okex(host, apiKey, secretKey, passPhrase);
     }
 
-    getTicker(symbol) { }
+    convertSymbol(symbol) {
+        return symbol.toLocaleUpperCase();
+    }
 
-    getBalance(currency) { }
+    async getTicker(symbol) { 
+        const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${this.convertSymbol(symbol)}/ticker`);
 
-    getBalances(currencies) { }
+        return res;
+    }
 
-    buy({ symbol, amount, price }) { }
+    async getBalance(currency) { 
+        const res = await this.getBalances([currency]);
 
-    sell({ symbol, amount, price }) { }
+        return res && res[currency];
+    }
 
-    getOrder(orderId, symbol) { }
+    async getBalances(currencies) { 
+        const res = await this.okex.invoke('GET', '/api/spot/v3/accounts');
+
+        const balances = {};
+        currencies.forEach((c) => {
+            balances[c] = 0;
+        });
+
+        for(const item of res) {
+            if(balances[item.currency.toLocaleLowerCase()] === 0) {
+                balances[item.currency.toLocaleLowerCase()] = item.balance;
+            }
+        }
+
+        return balances;
+    }
+
+    async buy({ symbol, amount, price }) {
+        const res = await this.okex.invoke('POST', '/api/spot/v3/orders', {
+            type: 'limit',
+            side: 'buy',
+            instrument_id: this.convertSymbol(symbol),
+            size: amount,
+            price: price,
+            order_type: 1
+        });
+
+        return res.order_id;
+    }
+
+    async sell({ symbol, amount, price }) { 
+        const res = await this.okex.invoke('POST', '/api/spot/v3/orders', {
+            type: 'limit',
+            side: 'sell',
+            instrument_id: this.convertSymbol(symbol),
+            size: amount,
+            price: price,
+            order_type: 1
+        });
+
+        return res.order_id;
+    }
+
+    async getOrder(orderId, symbol) {
+        const res = await this.okex.invoke('GET', `/api/spot/v3/orders/${orderId}`, {
+            instrument_id: this.convertSymbol(symbol)
+        });
+
+        return res;
+    }
 }

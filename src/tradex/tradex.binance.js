@@ -27,7 +27,7 @@ module.exports = class TradexBinance {
     }
 
     async getBalances(currencies) {
-        const res = await this.binance.invoke('GET', '/sapi/v1/capital/config/getall');
+        const res = await this.binance.invoke('GET', '/api/v3/account');
 
         const balances = {};
         currencies.forEach((c) => {
