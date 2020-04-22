@@ -2,12 +2,8 @@ const _ = require('lodash');
 const Binance = require('../core/binance');
 
 module.exports = class TradexBinance {
-    constructor({ host, apiKey, apiSecret }) {
-        this.host = host;
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
-
-        this.binance = new Binance(host, apiKey, apiSecret);
+    constructor({ host, apiKey, secretKey }) {
+        this.binance = new Binance(host, apiKey, secretKey);
     }
 
     async initAccount() { }

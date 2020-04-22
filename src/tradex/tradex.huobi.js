@@ -2,13 +2,10 @@ const _ = require('lodash');
 const Huobi = require('../core/huobi');
 
 module.exports = class TradexHuobi {
-    constructor({ host, accessKey, secretKey }) {
-        this.host = host;
-        this.accessKey = accessKey;
-        this.secretKey = secretKey;
+    constructor({ host, apiKey, secretKey }) {
         this.accountId;
 
-        this.huobi = new Huobi(host, accessKey, secretKey);
+        this.huobi = new Huobi(host, apiKey, secretKey);
     }
 
     async initAccount() {

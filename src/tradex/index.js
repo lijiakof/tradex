@@ -14,11 +14,11 @@ module.exports = class Tradex {
         this.tradex = new Klass[id]({
             host,
             // for Binance
-            apiKey,
-            apiSecret,
+            apiKey: apiKey,
+            apiSecret: secretKey,
             // for Huobi
-            accessKey,
-            secretKey
+            accessKey: apiKey,
+            secretKey: secretKey
         });
     }
 

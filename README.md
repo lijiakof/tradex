@@ -29,7 +29,7 @@ const tradex = new Tradex({
     id: 'binance',
     host: '',
     apiKey: '',
-    apiSecret: ''
+    secretKey: ''
 });
 
 const account = await tradex.getAccount();
@@ -44,20 +44,20 @@ console.log(account);
 
 ### Supported Exchange Markets
 
-| Name | id | Document |
+| Name | id | Document | API |
 | ---- | ---- | ---- |
 | Binance | binance | [doc](https://binance-docs.github.io/apidocs/spot/en/) |
 | Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
 ## Document
-* [-]getTrick
-* getTricks
-* [-]getBalance
-* [-]getBalances
-* [-]buy
-* [-]sell
-* [-]getOrder
+* ✅ getTrick
+* 🕐 getTricks
+* ✅ getBalance
+* ✅ getBalances
+* ✅ buy
+* ✅ sell
+* ✅ getOrder
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
