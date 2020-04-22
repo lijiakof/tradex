@@ -1,6 +1,6 @@
 {
     "name": "tradex",
-    "version": "0.1.0-beta.0",
+    "version": "0.1.0-beta.1",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/lijiakof/tradex.git"
@@ -19,7 +19,7 @@
     "main": "src/main.js",
     "scripts": {
         "test": "jest --env=node",
-        "publish:beta": "npm publish --tag beta",
+        "publish:beta": "npm publish",
         "publish": "npm publish"
     },
     "author": "一俢(1Jay)",

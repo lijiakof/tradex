@@ -50,6 +50,15 @@ console.log(account);
 | Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
+## Document
+* [-]getTrick
+* getTricks
+* [-]getBalance
+* [-]getBalances
+* [-]buy
+* [-]sell
+* [-]getOrder
+
 ## License
 [MIT](https://opensource.org/licenses/MIT)
 
