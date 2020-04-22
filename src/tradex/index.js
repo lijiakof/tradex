@@ -3,7 +3,7 @@ const Binance = require('./tradex.binance');
 const Okex = require('./tradex.okex');
 
 module.exports = class Tradex {
-    constructor({ id, host, accessKey, secretKey, apiKey, apiSecret }) {
+    constructor({ id, host, apiKey, secretKey }) {
 
         const Klass = {
             huobi: Huobi,
@@ -13,12 +13,8 @@ module.exports = class Tradex {
 
         this.tradex = new Klass[id]({
             host,
-            // for Binance
-            apiKey: apiKey,
-            apiSecret: secretKey,
-            // for Huobi
-            accessKey: apiKey,
-            secretKey: secretKey
+            apiKey,
+            secretKey
         });
     }
 

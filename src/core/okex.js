@@ -1,6 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
-const crypto = require('crypto');
+const querystring = require('querystring');
+const core = require('./core');
 
 module.exports = class Okex {
     constructor (host, accessKey, secretKey, passPhrase){
@@ -10,24 +11,38 @@ module.exports = class Okex {
         this.passPhrase = passPhrase;
     }
 
-    sign(data) {
+    sign({ method, path, data, timestamp }) {
+        let signPath = path;
+        let signData = data;
 
+        if(method === 'POST') {
+            signData = JSON.stringify(data);
+        }
+        else if(method === 'GET') {
+            signPath = path + (data ? '?' : '') + querystring.encode(data);
+            signData = '';
+        }
+
+        const str = timestamp + method.toUpperCase() + signPath + signData;
+        const signature = core.hmac(str, this.secretKey, 'sha256', 'base64');
+
+        return signature;
     }
 
     async invoke(method, path, data) {
+        const timestamp = Date.now() / 1000;
+
         let headers = {
             'content-type': 'application/json; charset=utf-8',
             'OK-ACCESS-KEY': this.accessKey,
             'OK-ACCESS-PASSPHRASE': this.passPhrase,
+            'OK-ACCESS-SIGN': this.sign({method, path, data, timestamp}),
+            'OK-ACCESS-TIMESTAMP': timestamp
         };
-
-        if(method === 'POST') {
-
-        }
 
         const resp = axios({
             method: method,
-            url: url,
+            url: `${this.host}${path}`,
             headers,
             timeout: 34000,
             params: method === 'GET' ? data : null,

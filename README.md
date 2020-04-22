@@ -1,10 +1,11 @@
-# Tradex
-Crypto currency trade API
+# 💱Tradex
+Crypto currency trade API for Nodejs
 
 ## Features
 * Support some popular crypto currency exchanges
-* Only support spot, futures is planning
+* Lightweight
 * Less dependencies
+* Only support spot, futures is planning
 * Support Node 12+
 
 ## Installing
@@ -51,13 +52,13 @@ console.log(balance);
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
 ## Document
-* ✅ getTrick
-* 🕐 getTricks
-* ✅ getBalance
-* ✅ getBalances
-* ✅ buy
-* ✅ sell
-* ✅ getOrder
+* ✅ getTrick(symbol)
+* 🕐 getTricks()
+* ✅ getBalance(currency)
+* ✅ getBalances(currencies)
+* ✅ buy({ symbol, amount, price })
+* ✅ sell({ symbol, amount, price })
+* ✅ getOrder(id, symbol)
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
