@@ -32,8 +32,8 @@ const tradex = new Tradex({
     secretKey: ''
 });
 
-const account = await tradex.getAccount();
-console.log(account);
+const balance = await tradex.getBalance('usdt');
+console.log(balance);
 ```
 
 ### How to get API's access permission
