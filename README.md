@@ -33,8 +33,16 @@ const tradex = new Tradex({
     secretKey: 'NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j'
 });
 
-const balance = await tradex.getBalance('usdt');
-console.log(balance);
+// use promise.then()
+radex.getBalance('usdt').then(res => {
+    console.log(res);
+})
+
+// or use async/await
+(async () => {
+    const balance = await tradex.getBalance('usdt');
+    console.log(balance);
+})();
 ```
 
 ### How to get API's access permission
