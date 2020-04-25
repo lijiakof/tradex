@@ -51,7 +51,7 @@ console.log(balance);
 | Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
-## Document
+## APIs
 * ✅ getTrick(symbol)
 * 🕐 getTricks()
 * ✅ getBalance(currency)
