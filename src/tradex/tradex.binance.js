@@ -34,9 +34,9 @@ module.exports = class TradexBinance {
             balances[c] = 0;
         });
 
-        for(const item of res) {
-            if(balances[item.coin.toLocaleLowerCase()] === 0) {
-                balances[item.coin.toLocaleLowerCase()] = Number(item.free);
+        for(const item of res.balances) {
+            if(balances[item.asset.toLocaleLowerCase()] === 0) {
+                balances[item.asset.toLocaleLowerCase()] = Number(item.free);
             }
         }
 

@@ -4,15 +4,15 @@ const querystring = require('querystring');
 const core = require('./core');
 
 module.exports = class Binance {
-    constructor(host, apiKey, apiSecret) {
+    constructor(host, apiKey, secretKey) {
         this.host = host || 'https://api.binance.com';
         this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
+        this.secretKey = secretKey;
     }
 
     sign(data) {
         const query = querystring.encode(data);
-        const signature = core.hmac(query, this.apiSecret, 'sha256', 'hex');
+        const signature = core.hmac(query, this.secretKey, 'sha256', 'hex');
 
         return signature;
     }
