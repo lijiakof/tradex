@@ -6,8 +6,6 @@ module.exports = class TradexBinance {
         this.binance = new Binance(host, apiKey, secretKey);
     }
 
-    async initAccount() { }
-
     convertSymbol(symbol) {
         return symbol.replace('-', '').toLocaleUpperCase();
     }

@@ -19,10 +19,6 @@ module.exports = class Tradex {
         });
     }
 
-    initAccount() {
-        return this.tradex.initAccount();
-    }
-
     getTicker(symbol) {
         return this.tradex.getTicker(symbol);
     }

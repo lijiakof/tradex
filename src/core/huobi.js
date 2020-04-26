@@ -30,7 +30,7 @@ module.exports = class Huobi {
 
         params.Signature = this.sign({
             method,
-            domain: 'api.huobi.pro',
+            domain: this.host.indexOf('test') >= 0 ? 'api.testnet.huobi.pro' : 'api.huobi.pro',
             path,
             params
         });

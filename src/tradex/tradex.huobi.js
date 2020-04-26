@@ -8,11 +8,15 @@ module.exports = class TradexHuobi {
         this.huobi = new Huobi(host, apiKey, secretKey);
     }
 
-    async initAccount() {
-        const account = await this.getAccount();
-        this.accountId = account[0].id;
+    async getAccountId() {
+        if(this.accountId) {
+            return this.accountId;
+        }
 
-        return account;
+        const account = await this.getAccount();
+        this.accountId = account && account[0].id;
+
+        return this.accountId;
     }
 
     async getAccount() {
@@ -40,7 +44,8 @@ module.exports = class TradexHuobi {
     }
 
     async getBalances(currencies) {
-        const res = await this.huobi.invoke('GET', `/v1/account/accounts/${this.accountId}/balance`, null);
+        const accountId = await this.getAccountId();
+        const res = await this.huobi.invoke('GET', `/v1/account/accounts/${accountId}/balance`, null);
 
         const balances = {};
         currencies.forEach((c) => {
@@ -57,8 +62,9 @@ module.exports = class TradexHuobi {
     }
 
     async buy({ symbol, amount, price }) {
+        const accountId = await this.getAccountId();
         const res = await this.huobi.invoke('POST', `/v1/order/orders/place`, {
-            'account-id': this.accountId,
+            'account-id': accountId,
             amount,
             price,
             'source': 'api',
@@ -71,8 +77,9 @@ module.exports = class TradexHuobi {
     }
 
     async sell({ symbol, amount, price }) {
+        const accountId = await this.getAccountId();
         const res = await this.huobi.invoke('POST', `/v1/order/orders/place`, {
-            'account-id': this.accountId,
+            'account-id': accountId,
             amount,
             price,
             'source': 'api',
