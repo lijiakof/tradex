@@ -1,16 +1,13 @@
 const Okex = require('../core/okex');
+const Filters = require('./filters/filters.okex');
 
 module.exports = class TradexOkex {
     constructor({ host, apiKey, secretKey, passPhrase }) {
         this.okex = new Okex(host, apiKey, secretKey, passPhrase);
     }
 
-    convertSymbol(symbol) {
-        return symbol.toLocaleUpperCase();
-    }
-
     async getTicker(symbol) { 
-        const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${this.convertSymbol(symbol)}/ticker`);
+        const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/ticker`);
 
         return res;
     }
@@ -42,7 +39,7 @@ module.exports = class TradexOkex {
         const res = await this.okex.invoke('POST', '/api/spot/v3/orders', {
             type: 'limit',
             side: 'buy',
-            instrument_id: this.convertSymbol(symbol),
+            instrument_id: Filters.revertSymbol(symbol),
             size: amount,
             price: price,
             order_type: 1
@@ -55,7 +52,7 @@ module.exports = class TradexOkex {
         const res = await this.okex.invoke('POST', '/api/spot/v3/orders', {
             type: 'limit',
             side: 'sell',
-            instrument_id: this.convertSymbol(symbol),
+            instrument_id: Filters.revertSymbol(symbol),
             size: amount,
             price: price,
             order_type: 1
@@ -66,7 +63,7 @@ module.exports = class TradexOkex {
 
     async getOrder(orderId, symbol) {
         const res = await this.okex.invoke('GET', `/api/spot/v3/orders/${orderId}`, {
-            instrument_id: this.convertSymbol(symbol)
+            instrument_id: Filters.revertSymbol(symbol)
         });
 
         return res;
