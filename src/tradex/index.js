@@ -3,6 +3,7 @@ const Binance = require('./tradex.binance');
 const Okex = require('./tradex.okex');
 
 module.exports = class Tradex {
+
     /**
      * Create a tradex
      * @typedef { Object } config
@@ -30,7 +31,7 @@ module.exports = class Tradex {
 
     /**
      * Get Ticker buy symbol
-     * @param { string } symbol - (e.g.,'btc-usdt')
+     * @param { string } symbol - e.g.,'btc-usdt'
      * @returns { Promise<Ticker> } tricker
      */
     getTicker(symbol) {
@@ -82,7 +83,7 @@ module.exports = class Tradex {
     /**
      * Get Order buy orderId
      * @param { string|number } orderId 
-     * @param { string } symbol - (e.g.,'btc-usdt')
+     * @param { string } symbol - e.g.,'btc-usdt'
      * @returns { Promise<Order> } order
      */
     getOrder(orderId, symbol) { 
