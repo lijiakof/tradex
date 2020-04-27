@@ -42,4 +42,4 @@ module.exports = class Tradex {
     getOrder(orderId, symbol) { 
         return this.tradex.getOrder(orderId, symbol);
     }
-}
+};

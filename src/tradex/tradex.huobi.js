@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const Huobi = require('../core/huobi');
 const Filters = require('./filters/filters.huobi');
 
@@ -60,14 +59,13 @@ module.exports = class TradexHuobi {
 
     async buy({ symbol, amount, price }) {
         const accountId = await this.getAccountId();
-        const res = await this.huobi.invoke('POST', `/v1/order/orders/place`, {
+        const res = await this.huobi.invoke('POST', '/v1/order/orders/place', {
             'account-id': accountId,
             amount,
             price,
             'source': 'api',
-            symbol: Filters.revertSymbol(symbol),
-            'type': 'buy-limit',
-            // "client-order-id": '' todo
+            'symbol': Filters.revertSymbol(symbol),
+            'type': 'buy-limit'
         });
 
         return res.data;
@@ -75,14 +73,13 @@ module.exports = class TradexHuobi {
 
     async sell({ symbol, amount, price }) {
         const accountId = await this.getAccountId();
-        const res = await this.huobi.invoke('POST', `/v1/order/orders/place`, {
+        const res = await this.huobi.invoke('POST', '/v1/order/orders/place', {
             'account-id': accountId,
             amount,
             price,
             'source': 'api',
-            symbol: Filters.revertSymbol(symbol),
-            'type': 'sell-limit',
-            // "client-order-id": "t0001" todo
+            'symbol': Filters.revertSymbol(symbol),
+            'type': 'sell-limit'
         });
 
         return res.data;
@@ -93,4 +90,4 @@ module.exports = class TradexHuobi {
 
         return Filters.convertOrder(res.data);
     }
-}
+};

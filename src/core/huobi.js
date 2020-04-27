@@ -48,7 +48,7 @@ module.exports = class Huobi {
             return res.data;
         }, err => {
             console.log(`${moment.utc().format('YYYY-MM-DDTHH:mm:ss')} error: ${path}`);
-            console.error(err)
+            console.error(err);
 
             throw err;
         });
@@ -60,4 +60,4 @@ module.exports = class Huobi {
 
         return resp;
     }
-}
+};

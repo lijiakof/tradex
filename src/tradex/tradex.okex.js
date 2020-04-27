@@ -68,4 +68,4 @@ module.exports = class TradexOkex {
 
         return res;
     }
-}
+};

@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const Binance = require('../core/binance');
 const Filters = require('./filters/filters.binance');
 
@@ -35,7 +34,7 @@ module.exports = class TradexBinance {
             }
         }
 
-        return balances
+        return balances;
     }
 
     async buy({ symbol, amount, price }) {
@@ -72,4 +71,4 @@ module.exports = class TradexBinance {
 
         return Filters.convertOrder(res);
     }
-}
+};

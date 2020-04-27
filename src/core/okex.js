@@ -1,5 +1,4 @@
 const axios = require('axios');
-const moment = require('moment');
 const querystring = require('querystring');
 const core = require('./core');
 
@@ -40,9 +39,11 @@ module.exports = class Okex {
             'OK-ACCESS-TIMESTAMP': timestamp
         };
 
+        const url = `${this.host}${path}`;
+
         const resp = axios({
             method: method,
-            url: `${this.host}${path}`,
+            url,
             headers,
             timeout: 34000,
             params: method === 'GET' ? data : null,
@@ -59,4 +60,4 @@ module.exports = class Okex {
 
         return resp;
     }
-}
+};

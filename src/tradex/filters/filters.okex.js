@@ -47,4 +47,4 @@ module.exports = class FilterHuobi {
     }
 
     static revertOrder() {}
-}
+};

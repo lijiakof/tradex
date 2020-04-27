@@ -40,11 +40,11 @@ module.exports = class Binance {
             return res.data;
         }, err => {
             console.log(`${moment.utc().format('YYYY-MM-DDTHH:mm:ss')} error: ${path}`);
-            console.error(err)
+            console.error(err);
 
             throw err;
         });
 
         return resp;
     }
-}
+};

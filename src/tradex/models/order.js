@@ -1,11 +1,14 @@
 module.exports = class Order {
-    id;
-    symbol;
-    side;
-    type;
-    price;
-    amount;
-    state;
-    createdTime;
-    _source;
-}
+    constructor() {
+        this.id;
+        this.symbol;
+        this.side;
+        this.type;
+        this.price;
+        this.amount;
+        this.state;
+        this.createdTime;
+        this._source;
+
+    }
+};

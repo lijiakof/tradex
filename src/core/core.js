@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const querystring = require('querystring');
 
 const core = {
     hash(data, algorithm='md5', encoding='hex') {

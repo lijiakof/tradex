@@ -1,3 +1,5 @@
 module.exports = class Ticker {
-    _source;
-}
+    constructor() {
+        this._source;
+    }
+};

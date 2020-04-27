@@ -18,10 +18,14 @@
     "homepage": "https://github.com/lijiakof/tradex#readme",
     "main": "src/main.js",
     "scripts": {
+        "lint": "eslint src/**",
         "test": "jest --env=node",
         "publish:beta": "npm publish",
         "publish": "npm publish"
     },
+    "pre-commit": [
+        "lint"
+    ],
     "author": "一俢(1Jay)",
     "license": "MIT",
     "dependencies": {
@@ -30,6 +34,8 @@
         "moment": "^2.24.0"
     },
     "devDependencies": {
-        "jest": "^25.4.0"
+        "eslint": "^6.8.0",
+        "jest": "^25.4.0",
+        "pre-commit": "^1.2.2"
     }
 }

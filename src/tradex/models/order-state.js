@@ -7,4 +7,4 @@ module.exports = {
     partialCanceled: 'partial-canceled',
     rejected: 'rejected',
     expired: 'expired'
-}
+};

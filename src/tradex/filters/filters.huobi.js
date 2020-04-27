@@ -31,7 +31,7 @@ module.exports = class FilterHuobi {
         let order = new Order();
 
         if(data) {
-            const [side, type] = data.type.split('-')
+            const [side, type] = data.type.split('-');
 
             order._source = data;
             order.id = data.id;
@@ -48,4 +48,4 @@ module.exports = class FilterHuobi {
     }
 
     static revertOrder() {}
-}
+};
