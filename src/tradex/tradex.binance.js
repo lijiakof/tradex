@@ -1,18 +1,15 @@
 const _ = require('lodash');
 const Binance = require('../core/binance');
+const Filters = require('./filters/filters.binance');
 
 module.exports = class TradexBinance {
     constructor({ host, apiKey, secretKey }) {
         this.binance = new Binance(host, apiKey, secretKey);
     }
 
-    convertSymbol(symbol) {
-        return symbol.replace('-', '').toLocaleUpperCase();
-    }
-
     async getTicker(symbol) {
         const res = await this.binance.invoke('GET', '/api/v3/ticker/24hr', {
-            symbol: this.convertSymbol(symbol)
+            symbol: Filters.revertSymbol(symbol)
         }, false);
 
         return res;
@@ -43,7 +40,7 @@ module.exports = class TradexBinance {
 
     async buy({ symbol, amount, price }) {
         const res = await this.binance.invoke('POST', '/api/v3/order', {
-            symbol: this.convertSymbol(symbol),
+            symbol: Filters.revertSymbol(symbol),
             side: 'BUY',
             type: 'LIMIT',
             quantity: amount,
@@ -56,7 +53,7 @@ module.exports = class TradexBinance {
 
     async sell({ symbol, amount, price }) {
         const res = await this.binance.invoke('POST', '/api/v3/order', {
-            symbol: this.convertSymbol(symbol),
+            symbol: Filters.revertSymbol(symbol),
             side: 'SELL',
             type: 'LIMIT',
             quantity: amount,
@@ -70,9 +67,9 @@ module.exports = class TradexBinance {
     async getOrder(orderId, symbol) {
         const res = await this.binance.invoke('GET', '/api/v3/order', {
             orderId,
-            symbol: this.convertSymbol(symbol)
+            symbol: Filters.revertSymbol(symbol)
         });
 
-        return res;
+        return Filters.convertOrder(res);
     }
 }

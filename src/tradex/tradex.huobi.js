@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Huobi = require('../core/huobi');
+const Filters = require('./filters/filters.huobi');
 
 module.exports = class TradexHuobi {
     constructor({ host, apiKey, secretKey }) {
@@ -25,13 +26,9 @@ module.exports = class TradexHuobi {
         return res.data;
     }
 
-    convertSymbol(symbol) {
-        return symbol.replace('-', '');
-    }
-
     async getTicker(symbol) {
         const res = await this.huobi.invoke('GET', '/market/detail/merged', {
-            symbol: 'btcusdt'
+            symbol: Filters.revertSymbol(symbol)
         });
 
         return res.tick;
@@ -68,7 +65,7 @@ module.exports = class TradexHuobi {
             amount,
             price,
             'source': 'api',
-            symbol: this.convertSymbol(symbol),
+            symbol: Filters.revertSymbol(symbol),
             'type': 'buy-limit',
             // "client-order-id": '' todo
         });
@@ -83,7 +80,7 @@ module.exports = class TradexHuobi {
             amount,
             price,
             'source': 'api',
-            symbol: this.convertSymbol(symbol),
+            symbol: Filters.revertSymbol(symbol),
             'type': 'sell-limit',
             // "client-order-id": "t0001" todo
         });
@@ -94,6 +91,6 @@ module.exports = class TradexHuobi {
     async getOrder(orderId) {
         const res = await this.huobi.invoke('GET', `/v1/order/orders/${orderId}`);
 
-        return res.data;
+        return Filters.convertOrder(res.data);
     }
 }
