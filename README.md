@@ -50,6 +50,14 @@ radex.getBalance('usdt').then(res => {
     * recommend: [Sub Account](https://account.huobi.com/en-us/subaccount/add)
 * [OKEx](https://www.okex.com/account/users/myApi)
 
+### ☎️Contact us
+If you have any other questions on APIs, you can contact us by below ways:
+
+* Telegram: https://t.me/aikuant 
+* Weichat: Scan 👇🏼QR code👇🏼 and add as a friend, then invite you to join the technical group
+
+![Weichat](./static/weichat.png)
+
 ### 🏋🏻‍♂️Supported Exchange Markets
 
 | Name | id | Document |
