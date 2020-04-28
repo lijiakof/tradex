@@ -1,7 +1,6 @@
 const axios = require('axios');
 const moment = require('moment');
-const querystring = require('querystring');
-const core = require('./core');
+const { core, querystring } = require('./core');
 
 module.exports = class Huobi {
     constructor(host, accessKey, secretKey) {
@@ -11,7 +10,7 @@ module.exports = class Huobi {
     }
 
     sign({ method, domain, path, params }) {
-        const query = querystring.encode(params);
+        const query = querystring.stringify(params, true);
         const data = [method, domain, path, query].join('\n');
         const signature = core.hmac(data, this.secretKey, 'sha256', 'base64');
 
@@ -19,14 +18,14 @@ module.exports = class Huobi {
     }
 
     async invoke(method, path, data) {
-        let params = {
+        const signData = {
             AccessKeyId: this.accessKey,
             SignatureMethod: 'HmacSHA256',
             SignatureVersion: 2,
             Timestamp: moment.utc().format('YYYY-MM-DDTHH:mm:ss')
         };
 
-        params = method === 'GET' ? Object.assign(params, data) : params;
+        let params = method === 'GET' ? Object.assign(signData, data) : signData;
 
         params.Signature = this.sign({
             method,

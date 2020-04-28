@@ -13,4 +13,18 @@ const core = {
     }
 };
 
-module.exports = core;
+const querystring = {
+    stringify(params, sort) {
+        let pars = [];
+        for (let item in params) {
+            params[item] && pars.push(item + '=' + encodeURIComponent(params[item]));
+        }
+
+        let query = sort ? pars.sort().join('&') : pars.join('&');
+
+        return query;
+    },
+    parse() {}
+};
+
+module.exports = { core, querystring};

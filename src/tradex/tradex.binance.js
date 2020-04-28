@@ -81,4 +81,15 @@ module.exports = class TradexBinance {
 
         return Filters.convertOrder(res);
     }
+
+    async getOrders({ symbol, startTime, endTime, limit }) {
+        const res = await this.binance.invoke('GET', '/api/v3/allOrders', {
+            symbol: Filters.revertSymbol(symbol),
+            startTime, 
+            endTime,
+            limit
+        });
+
+        return res;
+    }
 };

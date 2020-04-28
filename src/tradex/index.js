@@ -102,4 +102,8 @@ module.exports = class Tradex {
     getOrder(orderId, symbol) { 
         return this.tradex.getOrder(orderId, symbol);
     }
+
+    getOrders({ symbol, startTime, endTime, limit }) {
+        return this.tradex.getOrders({ symbol, startTime, endTime, limit });
+    }
 };

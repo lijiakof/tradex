@@ -61,7 +61,7 @@ radex.getBalance('usdt').then(res => {
 ## 📖APIs
 * ✅ getTrick(symbol)
 * 🕐 getTricks()
-* 🕐 getKline({ symbol, period, startTime, endTime })
+* 🕐 getKlines({ symbol, period, startTime, endTime })
 * ✅ getDepth({ symbol, limit })
 * ✅ getBalance(currency)
 * ✅ getBalances(currencies)
@@ -70,8 +70,9 @@ radex.getBalance('usdt').then(res => {
 * ✅ sell({ symbol, amount, price })
 * 🕐 sells(orders)
 * 🕐 order(options)
+* 🕐 cancelOrder(id, symbol)
 * ✅ getOrder(id, symbol)
-* 🕐 getOrders()
+* ✅ getOrders({ symbol, startTime, endTime, limit })
 
 ### Models
 

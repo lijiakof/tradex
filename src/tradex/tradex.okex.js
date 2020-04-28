@@ -15,6 +15,7 @@ module.exports = class TradexOkex {
         return res;
     }
 
+    // Retrieve the latest price snapshot, best bid/ask price, and trading volume in the last 24 hours for all trading pairs. This is publicly accessible without account authentication.
     async getTicker(symbol) { 
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/ticker`);
 
@@ -73,6 +74,17 @@ module.exports = class TradexOkex {
     async getOrder(orderId, symbol) {
         const res = await this.okex.invoke('GET', `/api/spot/v3/orders/${orderId}`, {
             instrument_id: Filters.revertSymbol(symbol)
+        });
+
+        return res;
+    }
+
+    async getOrders({ symbol, limit }) {
+        const res = await this.okex.invoke('GET', '/api/spot/v3/orders', {
+            instrument_id: Filters.revertSymbol(symbol),
+            // states,
+            state: 6, // TODO: revertState
+            size: limit
         });
 
         return res;

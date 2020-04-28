@@ -1,6 +1,5 @@
 const axios = require('axios');
-const querystring = require('querystring');
-const core = require('./core');
+const { core, querystring } = require('./core');
 
 module.exports = class Okex {
     constructor (host, accessKey, secretKey, passPhrase){
@@ -18,7 +17,7 @@ module.exports = class Okex {
             signData = JSON.stringify(data);
         }
         else if(method === 'GET') {
-            signPath = path + (data ? '?' : '') + querystring.encode(data);
+            signPath = path + (data ? '?' : '') + querystring.stringify(data);
             signData = '';
         }
 

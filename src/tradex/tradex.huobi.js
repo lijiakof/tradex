@@ -101,4 +101,16 @@ module.exports = class TradexHuobi {
 
         return Filters.convertOrder(res.data);
     }
+
+    async getOrders({ symbol, startTime, endTime, states='submitted', limit }) {
+        const res = await this.huobi.invoke('GET', '/v1/order/orders', {
+            symbol: Filters.revertSymbol(symbol),
+            'start-time': startTime, 
+            'end-time': endTime,
+            states,
+            size: limit
+        });
+
+        return res.data;
+    }
 };
