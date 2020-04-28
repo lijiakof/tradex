@@ -82,11 +82,10 @@ module.exports = class TradexOkex {
     async getOrders({ symbol, limit }) {
         const res = await this.okex.invoke('GET', '/api/spot/v3/orders', {
             instrument_id: Filters.revertSymbol(symbol),
-            // states,
             state: 6, // TODO: revertState
             size: limit
         });
 
-        return res;
+        return Filters.convertOrders(res);
     }
 };

@@ -90,6 +90,6 @@ module.exports = class TradexBinance {
             limit
         });
 
-        return res;
+        return Filters.convertOrders(res);
     }
 };

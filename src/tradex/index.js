@@ -103,6 +103,15 @@ module.exports = class Tradex {
         return this.tradex.getOrder(orderId, symbol);
     }
 
+    /**
+     * Get Orders
+     * @typedef { Object } params
+     * @property { string } symbol      - e.g., 'btc-usdt'
+     * @property { number } startTime   - e.g., 1580601600000
+     * @property { number } endTime     - e.g., 1582156800000
+     * @property { number } limit       - e.g., 10
+     * @returns { Promise<Orders> } orders
+     */
     getOrders({ symbol, startTime, endTime, limit }) {
         return this.tradex.getOrders({ symbol, startTime, endTime, limit });
     }

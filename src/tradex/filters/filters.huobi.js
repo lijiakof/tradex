@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const Ticker = require('../models/ticker');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
@@ -61,6 +62,18 @@ module.exports = class FilterHuobi {
         }
 
         return order;
+    }
+
+    static convertOrders(data) {
+        let orders = Array.from(Order);
+
+        if(data && _.isArray(data)) {
+            data.forEach(item => {
+                item && orders.push(this.convertOrder(item));
+            });
+        }
+
+        return orders;
     }
 
     static revertOrder() {}
