@@ -25,6 +25,16 @@ module.exports = class TradexHuobi {
         return res.data;
     }
 
+    async getDepth({ symbol, depth }) {
+        const res = await this.huobi.invoke('GET', '/market/depth', {
+            symbol: Filters.revertSymbol(symbol),
+            type: 'step0',
+            depth
+        }, false);
+
+        return res.tick;
+    }
+
     // This endpoint retrieves the latest ticker with some important 24h aggregated market data.
     async getTicker(symbol) {
         const res = await this.huobi.invoke('GET', '/market/detail/merged', {

@@ -29,8 +29,21 @@ module.exports = class Tradex {
         });
     }
 
+    // getKlines({symbol, period, startTime, endTime}) { }
+
     /**
-     * Get Ticker buy symbol
+     * Get Depth by symbol
+     * @typedef { Object } config
+     * @property { string } symbol  - e.g., 'btc-usdt'
+     * @property { number } depth   - e.g., 5, 10
+     * @returns { Promise<Depth> } depth
+     */
+    getDepth({ symbol, depth=5 }) {
+        return this.tradex.getDepth({ symbol, depth });
+    }
+
+    /**
+     * Get Ticker by symbol
      * @param { string } symbol - e.g.,'btc-usdt'
      * @returns { Promise<Ticker> } tricker
      */
@@ -81,7 +94,7 @@ module.exports = class Tradex {
     }
 
     /**
-     * Get Order buy orderId
+     * Get Order by orderId
      * @param { string|number } orderId 
      * @param { string } symbol - e.g.,'btc-usdt'
      * @returns { Promise<Order> } order

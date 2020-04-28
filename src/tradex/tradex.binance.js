@@ -6,6 +6,15 @@ module.exports = class TradexBinance {
         this.binance = new Binance(host, apiKey, secretKey);
     }
 
+    async getDepth({ symbol, depth }) {
+        const res = await this.binance.invoke('GET', '/api/v3/depth', {
+            symbol: Filters.revertSymbol(symbol),
+            limit: depth
+        }, false);
+
+        return res;
+    }
+
     // 24 hour rolling window price change statistics
     async getTicker(symbol) {
         const res = await this.binance.invoke('GET', '/api/v3/ticker/24hr', {
