@@ -1,10 +1,30 @@
+const Ticker = require('../models/ticker');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
 
 module.exports = class FilterBinance {
 
+    static convertSymbol(data) {
+        return data.toLocaleLowerCase();
+    }
+
     static revertSymbol(symbol) {
         return symbol.replace('-', '').toLocaleUpperCase();
+    }
+
+    static convertTicker(data) {
+        let ticker = new Ticker();
+
+        if(data) {
+            ticker._source = data;
+            ticker.symbol = this.convertSymbol(data.symbol);
+            ticker.open = data.openPrice;
+            ticker.close = data.lastPrice;
+            ticker.high = data.highPrice;
+            ticker.low = data.lowPrice;
+        }
+
+        return ticker;
     }
 
     static convertState(state) {        
@@ -34,7 +54,7 @@ module.exports = class FilterBinance {
         if(data) {
             order._source = data;
             order.id = data.orderId;
-            order.symbol = data.symbol.toLocaleLowerCase();
+            order.symbol = this.convertSymbol(data.symbol);
             order.side = data.side.toLocaleLowerCase();
             order.type = data.type.toLocaleLowerCase();
             order.amount = Number(data.origQty);

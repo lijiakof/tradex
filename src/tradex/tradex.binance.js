@@ -6,12 +6,13 @@ module.exports = class TradexBinance {
         this.binance = new Binance(host, apiKey, secretKey);
     }
 
+    // 24 hour rolling window price change statistics
     async getTicker(symbol) {
         const res = await this.binance.invoke('GET', '/api/v3/ticker/24hr', {
             symbol: Filters.revertSymbol(symbol)
         }, false);
 
-        return res;
+        return Filters.convertTicker(res);
     }
 
     async getBalance(currency) { 

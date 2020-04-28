@@ -25,12 +25,13 @@ module.exports = class TradexHuobi {
         return res.data;
     }
 
+    // This endpoint retrieves the latest ticker with some important 24h aggregated market data.
     async getTicker(symbol) {
         const res = await this.huobi.invoke('GET', '/market/detail/merged', {
             symbol: Filters.revertSymbol(symbol)
         });
 
-        return res.tick;
+        return Filters.convertTicker(res.tick);
     }
 
     async getBalance(currency) { 

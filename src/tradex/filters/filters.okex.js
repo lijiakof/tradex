@@ -1,10 +1,30 @@
+const Ticker = require('../models/ticker');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
 
 module.exports = class FilterHuobi {
 
+    static convertSymbol(data) {
+        return data.toLocaleLowerCase();
+    }
+
     static revertSymbol(symbol) {
         return symbol.toLocaleUpperCase();
+    }
+
+    static convertTicker(data) {
+        let ticker = new Ticker();
+
+        if(data) {
+            ticker._source = data;
+            ticker.symbol = this.convertSymbol(data.instrument_id);
+            ticker.open = data.open_24h;
+            ticker.close = data.last;
+            ticker.high = data.high_24h;
+            ticker.low = data.low_24h;
+        }
+
+        return ticker;
     }
 
     static convertState(state) {
@@ -34,7 +54,7 @@ module.exports = class FilterHuobi {
 
             order._source = data;
             order.id = data.order_id;
-            order.symbol = data.instrument_id;
+            order.symbol = this.convertSymbol(data.instrument_id);
             order.side = data.side;
             order.type = data.type;
             order.amount = data.size;

@@ -9,7 +9,7 @@ module.exports = class TradexOkex {
     async getTicker(symbol) { 
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/ticker`);
 
-        return res;
+        return Filters.convertTicker(res);
     }
 
     async getBalance(currency) { 

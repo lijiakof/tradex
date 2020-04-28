@@ -1,3 +1,4 @@
+const Ticker = require('../models/ticker');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
 
@@ -5,6 +6,21 @@ module.exports = class FilterHuobi {
 
     static revertSymbol(symbol) {
         return symbol.replace('-', '').toLocaleLowerCase();
+    }
+
+    static convertTicker(data) {
+        let ticker = new Ticker();
+
+        if(data) {
+            ticker._source = data;
+            // ticker.symbol = data.symbol;
+            ticker.open = data.open;
+            ticker.close = data.close;
+            ticker.high = data.high;
+            ticker.low = data.low;
+        }
+
+        return ticker;
     }
 
     static convertState(state) {

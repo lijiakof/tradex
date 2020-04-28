@@ -1,8 +1,8 @@
 # 💱Tradex
-Crypto currency trade API for Nodejs
+Cryptocurrency trade API for Nodejs
 
 ## ⚖️Features
-* Support some popular crypto currency exchanges
+* Support some popular cryptocurrency exchanges
 * Lightweight
 * Less dependencies
 * Only support spot, futures is planning
@@ -22,7 +22,6 @@ $ npm install tradex
 ```
 
 ## 🎁Useage
-
 ```
 const Tradex = require('tradex');
 
@@ -62,6 +61,7 @@ radex.getBalance('usdt').then(res => {
 ## 📖APIs
 * ✅ getTrick(symbol)
 * 🕐 getTricks()
+* 🕐 getKline(symbol)
 * ✅ getBalance(currency)
 * ✅ getBalances(currencies)
 * ✅ buy({ symbol, amount, price })
