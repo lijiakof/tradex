@@ -1,29 +1,29 @@
 # 💱Tradex
-Cryptocurrency trade API for Nodejs.
+基于 Nodejs 的数字货币交易 API。
 
-[中文](./README-CN.md)
+[English](./README.md)
 
-## ⚖️Features
-* Support some popular cryptocurrency exchanges
-* Lightweight
-* Less dependencies
-* Only support spot, futures is planning
-* Support Node 12+
+## ⚖️功能
+* 支持一些主流数字货币交易所；
+* 轻量级；
+* 依赖少；
+* 现在支持现货，期货正在计划中；
+* 支持 Node 12+。
 
-## 🛠Installing
-Using yarn:
+## 🛠安装
+使用 yarn:
 
 ```
 $ yarn add tradex
 ```
 
-Or using npm:
+或者使用 npm:
 
 ```
 $ npm install tradex
 ```
 
-## 🎁Useage
+## 🎁使用
 ```
 const Tradex = require('tradex');
 
@@ -46,27 +46,27 @@ radex.getBalance('usdt').then(res => {
 })();
 ```
 
-### 🔐How to get API's access permission
-* [Binance](https://www.binance.com/en/usercenter/settings/api-management)
-* [Huobi Global](https://www.huobi.com/en-us/apikey/)
-    * recommend: [Sub Account](https://account.huobi.com/en-us/subaccount/add)
+### 🔐如何获取各大交易所 API 权限
+* [币安](https://www.binance.com/cn/usercenter/settings/api-management)
+* [火币全球站](https://www.huobi.com/en-us/apikey/)
+    * 体检使用: [子账户](https://account.huobi.com/en-us/subaccount/add)
 * [OKEx](https://www.okex.com/account/users/myApi)
 
-### ☎️Contact us
-If you have any other questions on APIs, you can contact us by below ways:
+### ☎️联系我们
+如果您在使用中遇到问题，您可以使用以下方式联系我们：
 
-* Telegram: 👉[https://t.me/aikuant](https://t.me/aikuant)👈
-* Wechat: Scan 👇QR code👇 and add as a friend, then invite you to join the technical group
+* 电报群: 👉[https://t.me/aikuant](https://t.me/aikuant)👈
+* 微信: 扫描下方👇二维码👇加为好友，稍后会邀请您加入技术群组
 
 ![Wechat](./static/wechat.png)
 
-### 🏋🏻‍♂️Supported Exchange Markets
+### 🏋🏻‍♂️支持的交易所
 
-| Name | id | Document |
+| 名字 | id | 文档 |
 | ---- | ---- | ---- |
-| Binance | binance | [doc](https://binance-docs.github.io/apidocs/spot/en/) |
-| Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
-| OKEx | okex | [doc](https://www.okex.com/docs/en/) |
+| 币安 | binance | [文档](https://binance-docs.github.io/apidocs/spot/en/) |
+| 火币全球站 | huobi | [文档](https://huobiapi.github.io/docs/spot/v1/en/) |
+| OKEx | okex | [文档](https://www.okex.com/docs/en/) |
 
 ## 📖APIs
 * ✅ getTrick(symbol)
@@ -86,7 +86,7 @@ If you have any other questions on APIs, you can contact us by below ways:
 
 ### Models
 
-## 📄License
+## 📄许可
 [MIT](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2020-present, 一俢(1Jay)
