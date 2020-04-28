@@ -70,7 +70,7 @@ radex.getBalance('usdt').then(res => {
 * ✅ sell({ symbol, amount, price })
 * 🕐 sells(orders)
 * 🕐 order(options)
-* 🕐 cancelOrder(id, symbol)
+* ✅ cancelOrder({id, symbol})
 * ✅ getOrder(id, symbol)
 * ✅ getOrders({ symbol, startTime, endTime, limit })
 

@@ -96,6 +96,13 @@ module.exports = class TradexHuobi {
         return res.data;
     }
 
+    async cancelOrder({ orderId }) {
+        const res = await this.huobi.invoke('POST', `/v1/order/orders/${orderId}/submitcancel`);
+
+        return res.data;
+        
+    }
+
     async getOrder(orderId) {
         const res = await this.huobi.invoke('GET', `/v1/order/orders/${orderId}`);
 

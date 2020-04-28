@@ -71,6 +71,15 @@ module.exports = class TradexOkex {
         return res.order_id;
     }
 
+    async cancelOrder({ orderId, symbol }) {
+        const res = await this.okex.invoke('POST', `/api/spot/v3/cancel_orders/${orderId}`, {
+            instrument_id: Filters.revertSymbol(symbol)
+        });
+
+        return res.order_id;
+        
+    }
+
     async getOrder(orderId, symbol) {
         const res = await this.okex.invoke('GET', `/api/spot/v3/orders/${orderId}`, {
             instrument_id: Filters.revertSymbol(symbol)

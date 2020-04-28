@@ -94,6 +94,16 @@ module.exports = class Tradex {
     }
 
     /**
+     * Cancel the order by orderId
+     * @typedef { Object } order
+     * @property { number|string } orderId  - e.g., 2724352034
+     * @property { string } symbol          - e.g., 'btc-usdt'
+     */
+    cancelOrder({ orderId, symbol }) {
+        return this.tradex.cancelOrder({ orderId, symbol });
+    }
+
+    /**
      * Get Order by orderId
      * @param { string|number } orderId 
      * @param { string } symbol - e.g.,'btc-usdt'
