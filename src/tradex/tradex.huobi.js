@@ -8,6 +8,12 @@ module.exports = class TradexHuobi {
         this.huobi = new Huobi(host, apiKey, secretKey);
     }
 
+    async invoke({ method, path, data }) {
+        const res = await this.huobi.invoke(method, path, data);
+
+        return res;
+    }
+
     async getAccountId() {
         if(this.accountId) {
             return this.accountId;

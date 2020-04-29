@@ -29,6 +29,18 @@ module.exports = class Tradex {
         });
     }
 
+    /**
+     * Invoke api
+     * @typedef { Object } config
+     * @property { string } method  - e.g., 'GET'
+     * @property { string } path    - e.g., '/api/path/'
+     * @property { Object } data    - e.g., { symbol: 'btc-usdt', depth: 5 }
+     * @returns { Promise<Object> }
+     */
+    invoke({ method, path, data }) {
+        return this.tradex.invoke({ method, path, data });
+    }
+
     // getKlines({symbol, period, startTime, endTime}) { }
 
     /**

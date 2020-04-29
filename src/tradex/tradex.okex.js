@@ -6,6 +6,12 @@ module.exports = class TradexOkex {
         this.okex = new Okex(host, apiKey, secretKey, passPhrase);
     }
 
+    async invoke({ method, path, data }) {
+        const res = await this.okex.invoke(method, path, data);
+
+        return res;
+    }
+
     async getDepth({ symbol, depth }) {
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/book`, {
             instrument_id: Filters.revertSymbol(symbol),

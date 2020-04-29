@@ -83,6 +83,7 @@ If you have any other questions on APIs, you can contact us by below ways:
 * ✅ cancelOrder({id, symbol})
 * ✅ getOrder(id, symbol)
 * ✅ getOrders({ symbol, startTime, endTime, limit })
+* ✅ invoke({ method, path, data })
 
 ### Models
 

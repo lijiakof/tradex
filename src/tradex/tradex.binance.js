@@ -6,6 +6,12 @@ module.exports = class TradexBinance {
         this.binance = new Binance(host, apiKey, secretKey);
     }
 
+    async invoke({ method, path, data }) {
+        const res = await this.binance.invoke(method, path, data);
+
+        return res;
+    }
+
     async getDepth({ symbol, depth }) {
         const res = await this.binance.invoke('GET', '/api/v3/depth', {
             symbol: Filters.revertSymbol(symbol),
