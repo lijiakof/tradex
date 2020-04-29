@@ -41,14 +41,12 @@ module.exports = class Tradex {
         return this.tradex.invoke({ method, path, data });
     }
 
-    // getKlines({symbol, period, startTime, endTime}) { }
-
     /**
      * Get Depth by symbol
      * @typedef { Object } config
      * @property { string } symbol  - e.g., 'btc-usdt'
      * @property { number } depth   - e.g., 5, 10
-     * @returns { Promise<Depth> } depth
+     * @returns { Promise<Depth> }
      */
     getDepth({ symbol, depth=5 }) {
         return this.tradex.getDepth({ symbol, depth });
@@ -57,7 +55,7 @@ module.exports = class Tradex {
     /**
      * Get Ticker by symbol
      * @param { string } symbol - e.g.,'btc-usdt'
-     * @returns { Promise<Ticker> } tricker
+     * @returns { Promise<Ticker> }
      */
     getTicker(symbol) {
         return this.tradex.getTicker(symbol);
@@ -69,6 +67,7 @@ module.exports = class Tradex {
      * @property { string } symbol  - e.g., 'btc-usdt'
      * @property { string } period  - e.g., '1min', '5min', '15min', '30min', '1hour', '4hour', '1day', '1week'
      * @property { number } limit   - e.g., 10
+     * @returns { Promise<Klines> }
      */
     getKlines({ symbol, period, limit }) {
         return this.tradex.getKlines({ symbol, period, limit });
@@ -77,7 +76,7 @@ module.exports = class Tradex {
     /**
      * Get Balance
      * @param { string } currency 
-     * @returns { Promise<string|number> } banlance
+     * @returns { Promise<string|number> }
      */
     getBalance(currency) {
         return this.tradex.getBalance(currency);
@@ -86,7 +85,7 @@ module.exports = class Tradex {
     /**
      * Get Balances
      * @param { array } currencies 
-     * @returns { Promise<object> } banlances
+     * @returns { Promise<object> }
      */
     getBalances(currencies) {
         return this.tradex.getBalances(currencies);
@@ -98,7 +97,7 @@ module.exports = class Tradex {
      * @property { string } symbol  - e.g., 'btc-usdt'
      * @property { number } amount  - e.g., 0.1
      * @property { number } price   - e.g., 5000
-     * @returns { Promise<string|number> } orderId
+     * @returns { Promise<string|number> }
      */
     buy({ symbol, amount, price }) {
         return this.tradex.buy({ symbol, amount, price });
@@ -110,7 +109,7 @@ module.exports = class Tradex {
      * @property { string } symbol  - e.g., 'btc-usdt'
      * @property { number } amount  - e.g., 0.1
      * @property { number } price   - e.g., 10000
-     * @returns { Promise<string|number> } orderId
+     * @returns { Promise<string|number> }
      */
     sell({ symbol, amount, price }) { 
         return this.tradex.sell({ symbol, amount, price });
@@ -121,6 +120,7 @@ module.exports = class Tradex {
      * @typedef { Object } order
      * @property { number|string } orderId  - e.g., 2724352034
      * @property { string } symbol          - e.g., 'btc-usdt'
+     * @returns { Promise<string|number> }
      */
     cancelOrder({ orderId, symbol }) {
         return this.tradex.cancelOrder({ orderId, symbol });
@@ -130,7 +130,7 @@ module.exports = class Tradex {
      * Get Order by orderId
      * @param { string|number } orderId 
      * @param { string } symbol - e.g.,'btc-usdt'
-     * @returns { Promise<Order> } order
+     * @returns { Promise<Order> }
      */
     getOrder(orderId, symbol) { 
         return this.tradex.getOrder(orderId, symbol);
@@ -143,7 +143,7 @@ module.exports = class Tradex {
      * @property { number } startTime   - e.g., 1580601600000
      * @property { number } endTime     - e.g., 1582156800000
      * @property { number } limit       - e.g., 10
-     * @returns { Promise<Orders> } orders
+     * @returns { Promise<Orders> }
      */
     getOrders({ symbol, startTime, endTime, limit }) {
         return this.tradex.getOrders({ symbol, startTime, endTime, limit });
