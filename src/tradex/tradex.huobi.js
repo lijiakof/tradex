@@ -130,7 +130,7 @@ module.exports = class TradexHuobi {
             symbol: Filters.revertSymbol(symbol),
             'start-time': startTime, 
             'end-time': endTime,
-            states: 'submitted', // TODO: 
+            states: 'submitted,partial-filled,partial-canceled,filled,canceled,created', // TODO: revertState
             size: limit
         });
 

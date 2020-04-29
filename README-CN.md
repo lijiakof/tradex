@@ -81,7 +81,8 @@ radex.getBalance('usdt').then(res => {
 * 🕐 order(options)
 * ✅ cancelOrder({id, symbol})
 * ✅ getOrder(id, symbol)
-* ✅ getOrders({ symbol, startTime, endTime, limit })
+* 🚧 getOrders({ symbol, startTime, endTime, limit })
+* ✅ invoke({ method, path, data })
 
 ### Models
 
