@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Ticker = require('../models/ticker');
+const Kline = require('../models/kline');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
 
@@ -22,6 +23,49 @@ module.exports = class FilterHuobi {
         }
 
         return ticker;
+    }
+
+    static revertPeriod(period) {
+        // 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1week, 1mon, 1year
+        const map = {
+            '1min': '1min',
+            '5min': '5min',
+            '30min': '30min',
+            '1hour': '60min',
+            '4hour': '4hour',
+            '1day': '1day',
+            '1week': '1week'
+        };
+
+        return map[period] || period;
+    }
+
+    static convertKline(data) {
+        let kline = new Kline();
+
+        if(data) {
+            kline._source = data;
+            kline.time = data.id * 1000;
+            kline.open = data.open;
+            kline.high = data.high;
+            kline.low = data.low;
+            kline.close = data.close;
+            kline.volume = data.vol;
+        }
+        
+        return kline;
+    }
+
+    static convertKlines(data) {
+        let klines = Array.from(Kline);
+
+        if(data && _.isArray(data)) {
+            data.forEach(item => {
+                item && klines.push(this.convertKline(item));
+            });
+        }
+        
+        return klines;
     }
 
     static convertState(state) {

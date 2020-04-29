@@ -70,8 +70,7 @@ radex.getBalance('usdt').then(res => {
 
 ## 📖APIs <a id="apis"></a>
 * ✅ getTrick(symbol)
-* 🕐 getTricks()
-* 🕐 getKlines({ symbol, period, startTime, endTime })
+* ✅ getKlines({ symbol, period, limit })
 * ✅ getDepth({ symbol, limit })
 * ✅ getBalance(currency)
 * ✅ getBalances(currencies)

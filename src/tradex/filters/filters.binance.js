@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Ticker = require('../models/ticker');
+const Kline = require('../models/kline');
 const Order = require('../models/order');
 const OrderState = require('../models/order-state');
 
@@ -26,6 +27,49 @@ module.exports = class FilterBinance {
         }
 
         return ticker;
+    }
+
+    static revertPeriod(period) {
+        // 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
+        const map = {
+            '1min': '1m',
+            '5min': '5m',
+            '30min': '30m',
+            '1hour': '1h',
+            '4hour': '4h',
+            '1day': '1d',
+            '1week': '1w'
+        };
+
+        return map[period] || period;
+    }
+
+    static convertKline(data) {
+        let kline = new Kline();
+
+        if(data) {
+            kline._source = data;
+            kline.time = data[0];
+            kline.open = data[1];
+            kline.high = data[2];
+            kline.low = data[3];
+            kline.close = data[4];
+            kline.volume = data[5];
+        }
+        
+        return kline;
+    }
+
+    static convertKlines(data) {
+        let klines = Array.from(Kline);
+
+        if(data && _.isArray(data)) {
+            data.forEach(item => {
+                item && klines.push(this.convertKline(item));
+            });
+        }
+        
+        return klines;
     }
 
     static convertState(state) {        

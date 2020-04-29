@@ -16,7 +16,7 @@ module.exports = class TradexOkex {
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/book`, {
             instrument_id: Filters.revertSymbol(symbol),
             size: depth
-        }, false);
+        });
 
         return res;
     }
@@ -26,6 +26,18 @@ module.exports = class TradexOkex {
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/ticker`);
 
         return Filters.convertTicker(res);
+    }
+
+    async getKlines({ symbol, period, limit }) {
+        // TODO: limit to [start-end]
+        console.log(limit);
+        const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/candles`, {
+            granularity: Filters.revertPeriod(period),
+            // start,
+            // end
+        });
+
+        return Filters.convertKlines(res);
     }
 
     async getBalance(currency) { 

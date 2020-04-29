@@ -70,8 +70,7 @@ If you have any other questions on APIs, you can contact us by below ways:
 
 ## 📖APIs <a id="apis"></a>
 * ✅ getTrick(symbol)
-* 🕐 getTricks()
-* 🕐 getKlines({ symbol, period, startTime, endTime })
+* ✅ getKlines({ symbol, period, limit })
 * ✅ getDepth({ symbol, limit })
 * ✅ getBalance(currency)
 * ✅ getBalances(currencies)

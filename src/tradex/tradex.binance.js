@@ -30,6 +30,16 @@ module.exports = class TradexBinance {
         return Filters.convertTicker(res);
     }
 
+    async getKlines({ symbol, period, limit }) {
+        const res = await this.binance.invoke('GET', '/api/v3/klines', {
+            symbol: Filters.revertSymbol(symbol),
+            interval: Filters.revertPeriod(period),
+            limit
+        }, false);
+
+        return Filters.convertKlines(res);
+    }
+
     async getBalance(currency) { 
         const res = await this.getBalances([currency]);
 

@@ -64,6 +64,17 @@ module.exports = class Tradex {
     }
 
     /**
+     * 
+     * @typedef { Object } config
+     * @property { string } symbol  - e.g., 'btc-usdt'
+     * @property { string } period  - e.g., '1min', '5min', '15min', '30min', '1hour', '4hour', '1day', '1week'
+     * @property { number } limit   - e.g., 10
+     */
+    getKlines({ symbol, period, limit }) {
+        return this.tradex.getKlines({ symbol, period, limit });
+    }
+
+    /**
      * Get Balance
      * @param { string } currency 
      * @returns { Promise<string|number> } banlance

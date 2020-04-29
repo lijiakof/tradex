@@ -36,7 +36,7 @@ module.exports = class TradexHuobi {
             symbol: Filters.revertSymbol(symbol),
             type: 'step0',
             depth
-        }, false);
+        });
 
         return res.tick;
     }
@@ -48,6 +48,16 @@ module.exports = class TradexHuobi {
         });
 
         return Filters.convertTicker(res.tick);
+    }
+
+    async getKlines({ symbol, period, limit }) {
+        const res = await this.huobi.invoke('GET', '/market/history/kline', {
+            symbol: Filters.revertSymbol(symbol),
+            period: Filters.revertPeriod(period),
+            size: limit
+        });
+
+        return Filters.convertKlines(res.data);
     }
 
     async getBalance(currency) { 
