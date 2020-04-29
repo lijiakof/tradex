@@ -1,16 +1,16 @@
 # 💱Tradex
 基于 Nodejs 的数字货币交易 API。
 
-## [功能](#⚖️功能) · [安装](#🛠安装)· [使用](#🎁使用) · [联系我们](#☎️联系我们) · [APIs](#📖APIs) · [许可](#📄许可) · [English](./README.md)
+## [功能](#features) · [安装](#installing) · [使用](#useage) · [联系我们](#contact) · [APIs](#apis) · [许可](#license) · [English](./README.md)
 
-## ⚖️功能
+## ⚖️功能 <a id="features"></a>
 * 支持一些主流数字货币交易所；
 * 轻量级；
 * 依赖少；
 * 现在支持现货，期货正在计划中；
 * 支持 Node 12+。
 
-## 🛠安装
+## 🛠安装 <a id="installing"></a>
 使用 yarn:
 
 ```
@@ -23,7 +23,7 @@ $ yarn add tradex
 $ npm install tradex
 ```
 
-## 🎁使用
+## 🎁使用 <a id="useage"></a>
 ```
 const Tradex = require('tradex');
 
@@ -52,7 +52,7 @@ radex.getBalance('usdt').then(res => {
     * 体检使用: [子账户](https://account.huobi.com/en-us/subaccount/add)
 * [OKEx](https://www.okex.com/account/users/myApi)
 
-### ☎️联系我们
+### ☎️联系我们 <a id="contact"></a>
 如果您在使用中遇到问题，您可以使用以下方式联系我们：
 
 * 电报群: 👉[https://t.me/aikuant](https://t.me/aikuant)👈
@@ -68,7 +68,7 @@ radex.getBalance('usdt').then(res => {
 | 火币全球站 | huobi | [文档](https://huobiapi.github.io/docs/spot/v1/en/) |
 | OKEx | okex | [文档](https://www.okex.com/docs/en/) |
 
-## 📖APIs
+## 📖APIs <a id="apis"></a>
 * ✅ getTrick(symbol)
 * 🕐 getTricks()
 * 🕐 getKlines({ symbol, period, startTime, endTime })
@@ -86,7 +86,7 @@ radex.getBalance('usdt').then(res => {
 
 ### Models
 
-## 📄许可
+## 📄许可 <a id="license"></a>
 [MIT](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2020-present, 一俢(1Jay)

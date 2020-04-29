@@ -1,16 +1,16 @@
 # 💱Tradex
 Cryptocurrency trade API for Nodejs.
 
-## [Features](#⚖️Features) · [Install](#🛠Installing)· [Useage](#🎁Useage) · [Contact](#☎️Contact) · [APIs](#📖APIs) · [License](#📄License) · [中文](./README-CN.md)
+## [Features](#features) · [Install](#installing) · [Useage](#useage) · [Contact](#contact) · [APIs](#apis) · [License](#license) · [中文](./README-CN.md)
 
-## ⚖️Features
+## ⚖️Features <a id="features"></a>
 * Support some popular cryptocurrency exchanges
 * Lightweight
 * Less dependencies
 * Only support spot, futures is planning
 * Support Node 12+
 
-## 🛠Installing
+## 🛠Installing <a id="installing"></a>
 Using yarn:
 
 ```
@@ -23,7 +23,7 @@ Or using npm:
 $ npm install tradex
 ```
 
-## 🎁Useage
+## 🎁Useage <a id="useage"></a>
 ```
 const Tradex = require('tradex');
 
@@ -52,7 +52,7 @@ radex.getBalance('usdt').then(res => {
     * recommend: [Sub Account](https://account.huobi.com/en-us/subaccount/add)
 * [OKEx](https://www.okex.com/account/users/myApi)
 
-### ☎️Contact
+### ☎️Contact <a id="contact"></a>
 If you have any other questions on APIs, you can contact us by below ways:
 
 * Telegram: 👉[https://t.me/aikuant](https://t.me/aikuant)👈
@@ -68,7 +68,7 @@ If you have any other questions on APIs, you can contact us by below ways:
 | Huobi Global | huobi | [doc](https://huobiapi.github.io/docs/spot/v1/en/) |
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
-## 📖APIs
+## 📖APIs <a id="apis"></a>
 * ✅ getTrick(symbol)
 * 🕐 getTricks()
 * 🕐 getKlines({ symbol, period, startTime, endTime })
@@ -86,7 +86,7 @@ If you have any other questions on APIs, you can contact us by below ways:
 
 ### Models
 
-## 📄License
+## 📄License <a id="license"></a>
 [MIT](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2020-present, 一俢(1Jay)
