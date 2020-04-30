@@ -27,4 +27,4 @@ const querystring = {
     parse() {}
 };
 
-module.exports = { core, querystring};
+module.exports = { core, querystring };

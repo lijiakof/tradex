@@ -3,6 +3,7 @@ const { core, querystring } = require('./core');
 
 module.exports = class Okex {
     constructor (host, accessKey, secretKey, passPhrase){
+        this.id = 'okex';
         this.host = host || 'https://www.okex.com';
         this.accessKey = accessKey;
         this.secretKey = secretKey;

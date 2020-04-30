@@ -4,6 +4,7 @@ const { core, querystring } = require('./core');
 
 module.exports = class Binance {
     constructor(host, apiKey, secretKey) {
+        this.id = 'binance';
         this.host = host || 'https://api.binance.com';
         this.apiKey = apiKey;
         this.secretKey = secretKey;

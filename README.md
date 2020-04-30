@@ -35,13 +35,13 @@ const tradex = new Tradex({
 });
 
 // use promise.then()
-radex.getBalance('usdt').then(res => {
+tradex.spot.getBalance('usdt').then(res => {
     console.log(res);
 });
 
 // or use async/await
 (async () => {
-    const balance = await tradex.getBalance('usdt');
+    const balance = await tradex.spot.getBalance('usdt');
     console.log(balance);
 })();
 ```
@@ -69,20 +69,24 @@ If you have any other questions on APIs, you can contact us by below ways:
 | OKEx | okex | [doc](https://www.okex.com/docs/en/) |
 
 ## 📖APIs <a id="apis"></a>
-* ✅ getTrick(symbol)
-* ✅ getKlines({ symbol, period, limit })
-* ✅ getDepth({ symbol, limit })
-* ✅ getBalance(currency)
-* ✅ getBalances(currencies)
-* ✅ buy({ symbol, amount, price })
-* 🕐 buys(orders)
-* ✅ sell({ symbol, amount, price })
-* 🕐 sells(orders)
-* 🕐 order(options)
-* ✅ cancelOrder({id, symbol})
-* ✅ getOrder(id, symbol)
-* 🚧 getOrders({ symbol, startTime, endTime, limit })
+* spot
+    * ✅ getTrick(symbol)
+    * ✅ getKlines({ symbol, period, limit })
+    * ✅ getDepth({ symbol, limit })
+    * ✅ getBalance(currency)
+    * ✅ getBalances(currencies)
+    * ✅ buy({ symbol, amount, price })
+    * 🕐 buys(orders)
+    * ✅ sell({ symbol, amount, price })
+    * 🕐 sells(orders)
+    * 🕐 order(options)
+    * ✅ cancelOrder({id, symbol})
+    * ✅ getOrder(id, symbol)
+    * 🚧 getOrders({ symbol, startTime, endTime, limit })
+* futures
+    * 🕐 order(options)
 * ✅ invoke({ method, path, data })
+
 
 ### Models
 

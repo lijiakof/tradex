@@ -4,6 +4,7 @@ const { core, querystring } = require('./core');
 
 module.exports = class Huobi {
     constructor(host, accessKey, secretKey) {
+        this.id = 'huobi';
         this.host = host || 'https://api.huobi.pro';
         this.accessKey = accessKey;
         this.secretKey = secretKey;
