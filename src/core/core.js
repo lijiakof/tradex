@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const core = {
+const cryptor = {
     hash(data, algorithm='md5', encoding='hex') {
         const hs = crypto.createHash(algorithm);
 
@@ -27,4 +27,4 @@ const querystring = {
     parse() {}
 };
 
-module.exports = { core, querystring };
+module.exports = { cryptor, querystring };

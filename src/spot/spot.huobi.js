@@ -1,5 +1,5 @@
 const Huobi = require('../core/huobi');
-const Filters = require('./filters/filters.huobi');
+const Filters = require('../filters/filters.huobi');
 
 module.exports = class SpotHuobi {
     constructor(huobi = new Huobi()) {

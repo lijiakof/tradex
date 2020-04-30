@@ -1,5 +1,5 @@
 const Binance = require('../core/binance');
-const Filters = require('./filters/filters.binance');
+const Filters = require('../filters/filters.binance');
 
 module.exports = class SpotBinance {
     constructor(binance = new Binance()) {

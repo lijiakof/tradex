@@ -12,12 +12,12 @@ const tradex = new Tradex({
 });
 
 (async () => {
-    const ticker = await tradex.getTicker('btc-usdt');
+    const ticker = await tradex.spot.getTicker('btc-usdt');
     console.log(ticker);
 
-    const balance = await tradex.getBalance('usdt');
+    const balance = await tradex.spot.getBalance('usdt');
     console.log(balance);
 
-    const balances = await tradex.getBalances(['usdt', 'btc']);
+    const balances = await tradex.spot.getBalances(['usdt', 'btc']);
     console.log(balances);
 })();

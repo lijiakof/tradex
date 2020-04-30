@@ -1,6 +1,6 @@
 const axios = require('axios');
 const moment = require('moment');
-const { core, querystring } = require('./core');
+const { cryptor, querystring } = require('./core');
 
 module.exports = class Huobi {
     constructor(host, accessKey, secretKey) {
@@ -13,7 +13,7 @@ module.exports = class Huobi {
     sign({ method, domain, path, params }) {
         const query = querystring.stringify(params, true);
         const data = [method, domain, path, query].join('\n');
-        const signature = core.hmac(data, this.secretKey, 'sha256', 'base64');
+        const signature = cryptor.hmac(data, this.secretKey, 'sha256', 'base64');
 
         return signature;
     }

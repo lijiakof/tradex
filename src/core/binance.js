@@ -1,6 +1,6 @@
 const axios = require('axios');
 const moment = require('moment');
-const { core, querystring } = require('./core');
+const { cryptor, querystring } = require('./core');
 
 module.exports = class Binance {
     constructor(host, apiKey, secretKey) {
@@ -12,7 +12,7 @@ module.exports = class Binance {
 
     sign(data) {
         const query = querystring.stringify(data);
-        const signature = core.hmac(query, this.secretKey, 'sha256', 'hex');
+        const signature = cryptor.hmac(query, this.secretKey, 'sha256', 'hex');
 
         return signature;
     }

@@ -12,14 +12,14 @@ const tradex = new Tradex({
 });
 
 (async () => {
-    const buyId = await tradex.buy({
+    const buyId = await tradex.spot.buy({
         symbol: 'btc-usdt',
         amount: 0.001,
         price: 3000
     });
     console.log(buyId);
 
-    const sellId = await tradex.sell({
+    const sellId = await tradex.spot.sell({
         symbol: 'btc-usdt',
         amount: 0.001,
         price: 10000

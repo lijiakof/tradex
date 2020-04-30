@@ -1,5 +1,5 @@
 const Okex = require('../core/okex');
-const Filters = require('./filters/filters.okex');
+const Filters = require('../filters/filters.okex');
 
 module.exports = class SpotOkex {
     constructor(okex = new Okex()) {

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { core, querystring } = require('./core');
+const { cryptor, querystring } = require('./core');
 
 module.exports = class Okex {
     constructor (host, accessKey, secretKey, passPhrase){
@@ -23,7 +23,7 @@ module.exports = class Okex {
         }
 
         const str = timestamp + method.toUpperCase() + signPath + signData;
-        const signature = core.hmac(str, this.secretKey, 'sha256', 'base64');
+        const signature = cryptor.hmac(str, this.secretKey, 'sha256', 'base64');
 
         return signature;
     }

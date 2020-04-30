@@ -19,6 +19,17 @@ module.exports = class Futures {
         this.futures = new Klass[api.id](api);
     }
 
+    /**
+     * Get Depth by symbol
+     * @typedef { Object } config
+     * @property { string } symbol  - e.g., 'btc-usdt'
+     * @property { number } depth   - e.g., 5, 10
+     * @returns { Promise<Depth> }
+     */
+    getDepth({ symbol, depth=5 }) {
+        return this.spot.getDepth({ symbol, depth });
+    }
+
     order() {
         return this.futures.order();
     }
