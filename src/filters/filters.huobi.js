@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const Ticker = require('../models/ticker');
 const Kline = require('../models/kline');
 const Order = require('../models/order');
@@ -59,7 +58,7 @@ module.exports = class FilterHuobi {
     static convertKlines(data) {
         let klines = Array.from(Kline);
 
-        if(data && _.isArray(data)) {
+        if(data && Array.isArray(data)) {
             data.forEach(item => {
                 item && klines.push(this.convertKline(item));
             });
@@ -111,7 +110,7 @@ module.exports = class FilterHuobi {
     static convertOrders(data) {
         let orders = Array.from(Order);
 
-        if(data && _.isArray(data)) {
+        if(data && Array.isArray(data)) {
             data.forEach(item => {
                 item && orders.push(this.convertOrder(item));
             });
