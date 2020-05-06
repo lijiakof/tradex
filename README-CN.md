@@ -83,15 +83,16 @@ tradex.spot.getBalance('usdt').then(res => {
     * ✅ cancelOrder({ id, symbol })
     * ✅ getOrder(id, symbol)
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
+    * ✅ invoke({ method, path, data })
 * futures(**perpetual**)
-    * 🛠 getTrick(symbol)
-    * 🛠 getDepth({ symbol, limit })
-    * 🛠 getKlines({ symbol, period, limit })
+    * ✅ getTrick(symbol)
+    * ✅ getDepth({ symbol, limit })
+    * ✅ getKlines({ symbol, period, limit })
     * 🕐 order(options)
     * 🕐 cancelOrder({ id, symbol })
     * 🕐 getOrder(id, symbol)
     * 🕐 getOrders({ symbol, startTime, endTime, limit })
-* ✅ invoke({ method, path, data })
+    * ✅ invoke({ method, path, data })
 
 ### Models
 

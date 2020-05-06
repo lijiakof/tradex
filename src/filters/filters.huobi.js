@@ -9,6 +9,10 @@ module.exports = class FilterHuobi {
         return symbol.replace('-', '').toLocaleLowerCase();
     }
 
+    static revertFuturesSymbol(symbol) {
+        return symbol.toLocaleUpperCase();
+    }
+
     static convertTicker(data) {
         let ticker = new Ticker();
 

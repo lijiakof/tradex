@@ -7,7 +7,7 @@ module.exports = class FuturesOkex {
     }
 
     async getDepth({ symbol, depth }) {
-        const res = await this.okex.invoke('GET', `/api/futures/v3/instruments/${Filters.revertFuturesSymbol(symbol)}/book`, {
+        const res = await this.okex.invoke('GET', `/api/swap/v3/instruments/${Filters.revertFuturesSymbol(symbol)}/depth`, {
             instrument_id: Filters.revertFuturesSymbol(symbol),
             size: depth
         });
