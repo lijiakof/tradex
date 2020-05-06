@@ -12,6 +12,17 @@ const tradex = new Tradex({
 });
 
 (async () => {
+    // GET APIs
+    const ticker = await tradex.spot.getTicker('btc-usdt');
+    console.log(ticker);
+
+    const balance = await tradex.spot.getBalance('usdt');
+    console.log(balance);
+
+    const order = await tradex.spot.getOrder(1234567, 'btc-usdt');
+    console.log(order);
+
+    // POST APIs
     const buyId = await tradex.spot.buy({
         symbol: 'btc-usdt',
         amount: 0.001,

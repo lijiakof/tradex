@@ -84,7 +84,9 @@ If you have any other questions on APIs, you can contact us by below ways:
     * ✅ getOrder(id, symbol)
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
 * futures(perpetual)
+    * 🕐 getTrick(symbol)
     * 🕐 getDepth({ symbol, limit })
+    * 🕐 getKlines({ symbol, period, limit })
     * 🕐 order(options)
 * ✅ invoke({ method, path, data })
 

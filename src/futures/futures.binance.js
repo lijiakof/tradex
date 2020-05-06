@@ -15,6 +15,25 @@ module.exports = class FuturesBinance {
         return res;
     }
 
+    // 24 hour rolling window price change statistics.
+    async getTicker(symbol) {
+        const res = await this.binance.invoke('GET', '/fapi/v1/ticker/24hr', {
+            symbol: Filters.revertSymbol(symbol)
+        }, false);
+
+        return Filters.convertTicker(res);
+    }
+
+    async getKlines({ symbol, period, limit }) {
+        const res = await this.binance.invoke('GET', '/fapi/v1/klines', {
+            symbol: Filters.revertSymbol(symbol),
+            interval: Filters.revertPeriod(period),
+            limit
+        }, false);
+
+        return Filters.convertKlines(res);
+    }
+
     async order() {
         console.log('binance futures order');
     }

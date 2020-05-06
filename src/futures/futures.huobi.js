@@ -21,12 +21,30 @@ module.exports = class FuturesHuobi {
 
     async getDepth({ symbol, depth }) {
         const res = await this.huobi.invoke('GET', '/swap-ex/market/depth', {
-            symbol: Filters.revertSymbol(symbol),
+            contract_code: Filters.revertSymbol(symbol),
             type: 'step0',
             depth
         });
 
         return res.tick;
+    }
+
+    async getTicker(symbol) {
+        const res = await this.huobi.invoke('GET', '/swap-ex/market/detail/merged', {
+            contract_code: Filters.revertSymbol(symbol)
+        });
+
+        return Filters.convertTicker(res.tick);
+    }
+
+    async getKlines({ symbol, period, limit }) {
+        const res = await this.huobi.invoke('GET', '/swap-ex/market/history/kline', {
+            contract_code: Filters.revertSymbol(symbol),
+            period: Filters.revertPeriod(period),
+            size: limit
+        });
+
+        return Filters.convertKlines(res.data);
     }
 
     async order() {
