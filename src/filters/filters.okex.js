@@ -1,3 +1,5 @@
+const moment = require('moment');
+const Depth = require('../models/depth');
 const Ticker = require('../models/ticker');
 const Kline = require('../models/kline');
 const Order = require('../models/order');
@@ -15,6 +17,37 @@ module.exports = class FilterHuobi {
 
     static revertFuturesSymbol(symbol) {
         return symbol.toLocaleUpperCase() + '-SWAP';
+    }
+
+    static convertDepth(data) {
+        let depth = new Depth();
+
+        if(data) {
+            depth._source = data;
+            depth.price = data[0];
+            depth.volume = data[1];
+        }
+
+        return depth;
+    }
+
+    static convertDepths(data) {
+        let bids = Array.from(Depth);
+        let asks = Array.from(Depth);
+
+        if(data && Array.isArray(data.bids)) {
+            data.bids.forEach(item => {
+                item && bids.push(this.convertDepth(item));
+            });
+        }
+
+        if(data && Array.isArray(data.asks)) {
+            data.asks.forEach(item => {
+                item && asks.push(this.convertDepth(item));
+            });
+        }
+
+        return { bids, asks };
     }
  
     static convertTicker(data) {
@@ -45,6 +78,17 @@ module.exports = class FilterHuobi {
         };
 
         return map[period] || period;
+    }
+
+    static revertTimeRange(period, limit=3) {
+        const now = moment.utc();
+        const dif = this.revertPeriod(period) * limit;
+        const start = moment().subtract(dif, 'seconds').utc();
+
+        return {
+            end: now.format(),
+            start: start.format()
+        };
     }
 
     static convertKline(data) {

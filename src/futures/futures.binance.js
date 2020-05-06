@@ -12,7 +12,7 @@ module.exports = class FuturesBinance {
             limit: depth
         }, false);
 
-        return res;
+        return Filters.convertDepths(res);
     }
 
     // 24 hour rolling window price change statistics.

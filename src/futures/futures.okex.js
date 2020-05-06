@@ -12,7 +12,7 @@ module.exports = class FuturesOkex {
             size: depth
         });
 
-        return res;
+        return Filters.convertDepths(res);
     }
 
     async getTicker(symbol) { 
@@ -22,12 +22,12 @@ module.exports = class FuturesOkex {
     }
 
     async getKlines({ symbol, period, limit }) {
-        // TODO: limit to [start-end]
-        console.log(limit);
+        const { start, end } = Filters.revertTimeRange(period, limit);
+
         const res = await this.okex.invoke('GET', `//api/swap/v3/instruments/${Filters.revertFuturesSymbol(symbol)}/candles`, {
             granularity: Filters.revertPeriod(period),
-            // start,
-            // end
+            start,
+            end
         });
 
         return Filters.convertKlines(res);

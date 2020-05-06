@@ -26,7 +26,7 @@ module.exports = class FuturesHuobi {
             depth
         });
 
-        return res.tick;
+        return Filters.convertDepths(res.tick);
     }
 
     async getTicker(symbol) {

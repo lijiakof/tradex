@@ -32,7 +32,7 @@ module.exports = class SpotHuobi {
             depth
         });
 
-        return res.tick;
+        return Filters.convertDepths(res.tick);
     }
 
     // This endpoint retrieves the latest ticker with some important 24h aggregated market data.

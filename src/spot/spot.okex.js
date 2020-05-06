@@ -12,7 +12,7 @@ module.exports = class SpotOkex {
             size: depth
         });
 
-        return res;
+        return Filters.convertDepths(res);
     }
 
     // Retrieve the latest price snapshot, best bid/ask price, and trading volume in the last 24 hours for all trading pairs. This is publicly accessible without account authentication.
@@ -23,12 +23,12 @@ module.exports = class SpotOkex {
     }
 
     async getKlines({ symbol, period, limit }) {
-        // TODO: limit to [start-end]
-        console.log(limit);
+        const { start, end } = Filters.revertTimeRange(period, limit);
+
         const res = await this.okex.invoke('GET', `/api/spot/v3/instruments/${Filters.revertSymbol(symbol)}/candles`, {
             granularity: Filters.revertPeriod(period),
-            // start,
-            // end
+            start,
+            end
         });
 
         return Filters.convertKlines(res);

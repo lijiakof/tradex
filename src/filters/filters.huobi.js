@@ -1,3 +1,4 @@
+const Depth = require('../models/depth');
 const Ticker = require('../models/ticker');
 const Kline = require('../models/kline');
 const Order = require('../models/order');
@@ -11,6 +12,37 @@ module.exports = class FilterHuobi {
 
     static revertFuturesSymbol(symbol) {
         return symbol.toLocaleUpperCase();
+    }
+
+    static convertDepth(data) {
+        let depth = new Depth();
+
+        if(data) {
+            depth._source = data;
+            depth.price = data[0];
+            depth.volume = data[1];
+        }
+
+        return depth;
+    }
+
+    static convertDepths(data) {
+        let bids = Array.from(Depth);
+        let asks = Array.from(Depth);
+
+        if(data && Array.isArray(data.bids)) {
+            data.bids.forEach(item => {
+                item && bids.push(this.convertDepth(item));
+            });
+        }
+
+        if(data && Array.isArray(data.asks)) {
+            data.asks.forEach(item => {
+                item && asks.push(this.convertDepth(item));
+            });
+        }
+
+        return { bids, asks };
     }
 
     static convertTicker(data) {

@@ -8,6 +8,8 @@ module.exports = class Huobi {
         this.host = host || 'https://api.huobi.pro';
         this.accessKey = accessKey;
         this.secretKey = secretKey;
+
+        this.domain = 'api.huobi.pro';
     }
 
     sign({ method, domain, path, params }) {
