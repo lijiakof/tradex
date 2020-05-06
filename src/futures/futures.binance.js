@@ -2,8 +2,8 @@ const Binance = require('../core/binance');
 const Filters = require('../filters/filters.binance');
 
 module.exports = class FuturesBinance {
-    constructor(binance = new Binance()) {
-        this.binance = binance;
+    constructor({ host, apiKey, secretKey }) {
+        this.binance = new Binance(host, apiKey, secretKey);
     }
 
     async getDepth({ symbol, depth }) {

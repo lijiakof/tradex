@@ -4,11 +4,11 @@ Cryptocurrency trade API for Nodejs.
 ## [Features](#features) · [Install](#installing) · [Useage](#useage) · [Contact](#contact) · [APIs](#apis) · [License](#license) · [中文](./README-CN.md)
 
 ## ⚖️Features <a id="features"></a>
-* Support some popular cryptocurrency exchanges
-* Lightweight
-* Less dependencies
-* Only support spot, futures is planning
-* Support Node 12+
+* Support some popular cryptocurrency exchanges;
+* Lightweight, Less dependencies;
+* Easy to use;
+* Support spot, and **perpetual** futures is in progress;
+* Support Node 12+.
 
 ## 🛠Installing <a id="installing"></a>
 Using yarn:
@@ -83,7 +83,8 @@ If you have any other questions on APIs, you can contact us by below ways:
     * ✅ cancelOrder({ id, symbol })
     * ✅ getOrder(id, symbol)
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
-* futures(perpetual)
+    * ✅ invoke({ method, path, data })
+* futures(**perpetual**)
     * 🛠 getTrick(symbol)
     * 🛠 getDepth({ symbol, limit })
     * 🛠 getKlines({ symbol, period, limit })
@@ -91,8 +92,7 @@ If you have any other questions on APIs, you can contact us by below ways:
     * 🕐 cancelOrder({ id, symbol })
     * 🕐 getOrder(id, symbol)
     * 🕐 getOrders({ symbol, startTime, endTime, limit })
-* ✅ invoke({ method, path, data })
-
+    * ✅ invoke({ method, path, data })
 
 ### Models
 

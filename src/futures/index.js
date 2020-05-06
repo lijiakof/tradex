@@ -6,9 +6,14 @@ module.exports = class Futures {
 
     /**
      * Create a futures
-     * @param { Object } api
+     * @typedef { Object } config
+     * @property { string } id          - e.g., 'binance'
+     * @property { string } host        - e.g., 'https://api.domain.com'
+     * @property { string } apiKey      - e.g., 
+     * @property { string } secretKey   - e.g.,
+     * @property { string } passPhrase  - e.g.,
      */
-    constructor(api) {
+    constructor({ id, host, apiKey, secretKey, passPhrase }) {
 
         const Klass = {
             binance: Binance,
@@ -16,7 +21,24 @@ module.exports = class Futures {
             okex: Okex
         };
 
-        this.futures = new Klass[api.id](api);
+        this.futures = new Klass[id]({
+            host,
+            apiKey,
+            secretKey,
+            passPhrase
+        });
+    }
+
+    /**
+     * Invoke api
+     * @typedef { Object } config
+     * @property { string } method  - e.g., 'GET'
+     * @property { string } path    - e.g., '/api/path/'
+     * @property { Object } data    - e.g., { symbol: 'btc-usdt', depth: 5 }
+     * @returns { Promise<Object> }
+     */
+    invoke({ method, path, data }) {
+        return this.futures.invoke(method, path, data);
     }
 
     /**
@@ -27,7 +49,28 @@ module.exports = class Futures {
      * @returns { Promise<Depth> }
      */
     getDepth({ symbol, depth=5 }) {
-        return this.spot.getDepth({ symbol, depth });
+        return this.futures.getDepth({ symbol, depth });
+    }
+
+    /**
+     * Get Ticker by symbol
+     * @param { string } symbol - e.g.,'btc-usdt'
+     * @returns { Promise<Ticker> }
+     */
+    getTicker(symbol) {
+        return this.futures.getTicker(symbol);
+    }
+
+    /**
+     * Get klines
+     * @typedef { Object } config
+     * @property { string } symbol  - e.g., 'btc-usdt'
+     * @property { string } period  - e.g., '1min', '5min', '15min', '30min', '1hour', '4hour', '1day', '1week'
+     * @property { number } limit   - e.g., 10
+     * @returns { Promise<Klines> }
+     */
+    getKlines({ symbol, period, limit }) {
+        return this.futures.getKlines({ symbol, period, limit });
     }
 
     order() {

@@ -5,10 +5,15 @@ const Okex = require('./spot.okex');
 module.exports = class Spot {
 
     /**
-     * Create a spot
-     * @param { Object } api
+     * Create a tradex
+     * @typedef { Object } config
+     * @property { string } id          - e.g., 'binance'
+     * @property { string } host        - e.g., 'https://api.domain.com'
+     * @property { string } apiKey      - e.g., 
+     * @property { string } secretKey   - e.g.,
+     * @property { string } passPhrase  - e.g.,
      */
-    constructor(api) {
+    constructor({ id, host, apiKey, secretKey, passPhrase }) {
 
         const Klass = {
             huobi: Huobi,
@@ -16,7 +21,24 @@ module.exports = class Spot {
             okex: Okex
         };
 
-        this.spot = new Klass[api.id](api);
+        this.spot = new Klass[id]({
+            host,
+            apiKey,
+            secretKey,
+            passPhrase
+        });
+    }
+
+    /**
+     * Invoke api
+     * @typedef { Object } config
+     * @property { string } method  - e.g., 'GET'
+     * @property { string } path    - e.g., '/api/path/'
+     * @property { Object } data    - e.g., { symbol: 'btc-usdt', depth: 5 }
+     * @returns { Promise<Object> }
+     */
+    invoke({ method, path, data }) {
+        return this.spot.invoke(method, path, data);
     }
 
     /**

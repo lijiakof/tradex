@@ -2,10 +2,10 @@ const Huobi = require('../core/huobi');
 const Filters = require('../filters/filters.huobi');
 
 module.exports = class FuturesHuobi {
-    constructor(huobi = new Huobi()) {
+    constructor({ host, apiKey, secretKey }) {
         this.accountId;
 
-        this.huobi = huobi;
+        this.huobi = new Huobi(host, apiKey, secretKey);
     }
 
     async getAccountId() {

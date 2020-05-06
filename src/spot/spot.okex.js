@@ -2,8 +2,8 @@ const Okex = require('../core/okex');
 const Filters = require('../filters/filters.okex');
 
 module.exports = class SpotOkex {
-    constructor(okex = new Okex()) {
-        this.okex = okex;
+    constructor({ host, apiKey, secretKey, passPhrase }) {
+        this.okex = new Okex(host, apiKey, secretKey, passPhrase);
     }
 
     async getDepth({ symbol, depth }) {

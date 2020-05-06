@@ -13,6 +13,10 @@ module.exports = class FilterHuobi {
         return symbol.toLocaleUpperCase();
     }
 
+    static revertFuturesSymbol(symbol) {
+        return symbol.toLocaleUpperCase() + '-SWAP';
+    }
+ 
     static convertTicker(data) {
         let ticker = new Ticker();
 

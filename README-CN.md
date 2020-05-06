@@ -5,9 +5,9 @@
 
 ## ⚖️功能 <a id="features"></a>
 * 支持一些主流数字货币交易所；
-* 轻量级；
-* 依赖少；
-* 现在支持现货，期货正在计划中；
+* 轻量级、依赖少；
+* 使用便捷；
+* 现在支持现货，**永续**合约正在进行中；
 * 支持 Node 12+。
 
 ## 🛠安装 <a id="installing"></a>
@@ -83,7 +83,7 @@ tradex.spot.getBalance('usdt').then(res => {
     * ✅ cancelOrder({ id, symbol })
     * ✅ getOrder(id, symbol)
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
-* futures(perpetual)
+* futures(**perpetual**)
     * 🛠 getTrick(symbol)
     * 🛠 getDepth({ symbol, limit })
     * 🛠 getKlines({ symbol, period, limit })
