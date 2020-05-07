@@ -34,7 +34,46 @@ module.exports = class FuturesBinance {
         return Filters.convertKlines(res);
     }
 
-    async order() {
-        console.log('binance futures order');
+    async setLeverage({ symbol, leverage }) {
+        const res = await this.binance.invoke('POST', '/fapi/v1/leverage', {
+            symbol,
+            leverage
+        });
+
+        return res;
+    }
+
+    // async order({ type, symbol, amount, price }) {
+    //     // positionSide: BOTH 单一持仓方向, LONG 多头, SHORT 空头
+    //     // side: BUY, SELL
+    //     const res = await this.binance.invoke('POST', '/fapi/v1/order', {
+    //         symbol,
+    //         side: 'BUY',
+    //         positionSide: position.toLocaleUpperCase(),
+    //         quantity: amount,
+    //         price,
+    //         type: 'LIMIT',
+    //         timeInForce: 'GTC'
+    //     });
+
+    //     return res.orderId;
+    // }
+
+    async cancelOrder({ orderId, symbol }) {
+        const res = await this.binance.invoke('DELETE', '/fapi/v1/order', {
+            orderId,
+            symbol: Filters.revertSymbol(symbol)
+        });
+
+        return res.orderId;
+    }
+
+    async getOrder({ orderId, symbol }) {
+        const res = await this.binance.invoke('GET', '/fapi/v1/order', {
+            orderId,
+            symbol: Filters.revertSymbol(symbol)
+        });
+
+        return res;
     }
 };

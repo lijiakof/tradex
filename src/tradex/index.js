@@ -1,6 +1,9 @@
 const Spot = require('../spot');
 const Futures = require('../futures');
 
+/**
+ * Tradex Class
+ */
 module.exports = class Tradex {
     /**
      * Create a tradex

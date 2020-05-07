@@ -46,7 +46,7 @@ module.exports = class Futures {
      * @typedef { Object } config
      * @property { string } symbol  - e.g., 'btc-usdt'
      * @property { number } depth   - e.g., 5, 10
-     * @returns { Promise<Depth> }
+     * @returns { Promise<Depths> }
      */
     getDepth({ symbol, depth=5 }) {
         return this.futures.getDepth({ symbol, depth });
@@ -73,8 +73,29 @@ module.exports = class Futures {
         return this.futures.getKlines({ symbol, period, limit });
     }
 
-    order() {
-        return this.futures.order();
+    setLeverage({ symbol, leverage }) {
+        return this.futures.setLeverage({ symbol, leverage });
     }
-    
+
+    /**
+     * Place an Order
+     * @typedef { Object } order
+     * @property { string } symbol          - e.g., 'btc-usdt'
+     * @property { string } type            - e.g., 'openlong', 'openshort', 'closelong', 'closeshort'
+     * @property { string|number } price    - e.g.,
+     * @property { string|number } amount   - e.g., 
+     */
+    order({ symbol, type, price, amount }) {
+        return this.futures.order({ symbol, type, price, amount });
+    }
+
+    cancelOrder({ orderId, symbol }) {
+        return this.futures.order({ orderId, symbol });
+    }
+
+    getOrder({ orderId, symbol }) {
+        return this.futures.getOrder({ orderId, symbol });
+    }
+
+    getOrders() {}
 };

@@ -89,7 +89,6 @@ module.exports = class SpotOkex {
         });
 
         return res.order_id;
-        
     }
 
     async getOrder(orderId, symbol) {

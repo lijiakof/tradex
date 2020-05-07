@@ -24,7 +24,7 @@ module.exports = class FuturesOkex {
     async getKlines({ symbol, period, limit }) {
         const { start, end } = Filters.revertTimeRange(period, limit);
 
-        const res = await this.okex.invoke('GET', `//api/swap/v3/instruments/${Filters.revertFuturesSymbol(symbol)}/candles`, {
+        const res = await this.okex.invoke('GET', `/api/swap/v3/instruments/${Filters.revertFuturesSymbol(symbol)}/candles`, {
             granularity: Filters.revertPeriod(period),
             start,
             end
@@ -33,7 +33,44 @@ module.exports = class FuturesOkex {
         return Filters.convertKlines(res);
     }
 
-    async order() {
-        console.log('okex futures order');
+    async setLeverage({ symbol, leverage }) { 
+        const res = await this.okex.invoke('POST', `/api/swap/v3/accounts/${Filters.revertFuturesSymbol(symbol)}/leverage`, {
+            instrument_id: Filters.revertFuturesSymbol(symbol),
+            leverage,
+            side: 3
+        });
+
+        return res;
+    }
+
+    // async order({ type, symbol, amount, price }) {
+
+    //     const res = await this.huobi.invoke('POST', '/api/swap/v3/order', {
+    //         instrument_id: Filters.revertFuturesSymbol(symbol),
+    //         price,
+    //         size: amount,
+    //         // type: ,
+    //         // order_type: 1
+    //     });
+
+    //     return res.order_id;
+    // }
+
+    async cancelOrder({ orderId, symbol }) {
+        const res = await this.okex.invoke('POST', `/api/swap/v3/cancel_order/${Filters.revertFuturesSymbol(symbol)}/${orderId}`, {
+            instrument_id: Filters.revertFuturesSymbol(symbol),
+            order_id: orderId
+        });
+
+        return res.order_id;
+    }
+
+    async getOrder({ orderId, symbol }) {
+        const res = await this.okex.invoke('GET', `/api/swap/v3/orders/${Filters.revertFuturesSymbol(symbol)}/${orderId}`, {
+            instrument_id: Filters.revertFuturesSymbol(symbol),
+            order_id: orderId
+        });
+
+        return res.order_id;
     }
 };

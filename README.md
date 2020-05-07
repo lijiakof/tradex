@@ -88,9 +88,10 @@ If you have any other questions on APIs, you can contact us by below ways:
     * ✅ getTrick(symbol)
     * ✅ getDepth({ symbol, limit })
     * ✅ getKlines({ symbol, period, limit })
-    * 🕐 order(options)
-    * 🕐 cancelOrder({ id, symbol })
-    * 🕐 getOrder(id, symbol)
+    * ✅ setLeverage({ symbol, leverage })
+    * 🕐 order({ type, symbol, amount, price })
+    * 🛠 cancelOrder({ id, symbol })
+    * 🛠 getOrder({ id, symbol })
     * 🕐 getOrders({ symbol, startTime, endTime, limit })
     * ✅ invoke({ method, path, data })
 

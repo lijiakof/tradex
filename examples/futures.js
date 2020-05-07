@@ -13,8 +13,18 @@ const tradex = new Tradex({
 
 (async () => {
     const depth = await tradex.futures.getDepth({
-        symbol: '',
+        symbol: 'btc-usdt',
         depth: 5
     });
     console.log(depth);
+
+    const ticker = await tradex.futures.getTicker('btc-usdt');
+    console.log(ticker);
+
+    const klines = await tradex.futures.getKlines({
+        symbol: 'btc-usdt',
+        period: '1day',
+        limit: 3
+    });
+    console.log(klines);
 })();
