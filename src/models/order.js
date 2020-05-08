@@ -1,5 +1,6 @@
 module.exports = class Order {
     constructor() {
+        this._source;
         this.id;
         this.symbol;
         this.side;
@@ -8,7 +9,5 @@ module.exports = class Order {
         this.amount;
         this.state;
         this.createdTime;
-        this._source;
-
     }
 };

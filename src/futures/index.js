@@ -73,26 +73,48 @@ module.exports = class Futures {
         return this.futures.getKlines({ symbol, period, limit });
     }
 
+    /**
+     * Set leverage
+     * @typedef { Object } order
+     * @property { string } symbol      - e.g., 'btc-usdt'
+     * @property { number } leverage    - e.g., 
+     * @returns { Promise<any> }
+     */
     setLeverage({ symbol, leverage }) {
         return this.futures.setLeverage({ symbol, leverage });
     }
 
     /**
-     * Place an Order
+     * Place an order
      * @typedef { Object } order
      * @property { string } symbol          - e.g., 'btc-usdt'
      * @property { string } type            - e.g., 'openlong', 'openshort', 'closelong', 'closeshort'
      * @property { string|number } price    - e.g.,
      * @property { string|number } amount   - e.g., 
+     * @returns { Promise<string|number> }
      */
     order({ symbol, type, price, amount }) {
         return this.futures.order({ symbol, type, price, amount });
     }
 
+    /**
+     * Cancel an order by orderId
+     * @typedef { Object } order
+     * @property { string|number } orderId  - e.g., 298773
+     * @property { string } symbol          - e.g., 'btc-usdt'
+     * @returns { Promise<string|number> }
+     */
     cancelOrder({ orderId, symbol }) {
         return this.futures.order({ orderId, symbol });
     }
 
+    /**
+     * Get an order by orderId
+     * @typedef { Object } order
+     * @property { string|number } orderId  - e.g., 298773
+     * @property { string } symbol          - e.g., 'btc-usdt'
+     * @returns { Promise<Order> }
+     */
     getOrder({ orderId, symbol }) {
         return this.futures.getOrder({ orderId, symbol });
     }
