@@ -81,7 +81,7 @@ tradex.spot.getBalance('usdt').then(res => {
     * 🕐 sells(orders)
     * 🕐 order(options)
     * ✅ cancelOrder({ id, symbol })
-    * ✅ getOrder(id, symbol)
+    * ✅ getOrder({ id, symbol })
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
     * ✅ invoke({ method, path, data })
 * futures(**perpetual**)

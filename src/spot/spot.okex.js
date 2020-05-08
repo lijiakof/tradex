@@ -91,7 +91,7 @@ module.exports = class SpotOkex {
         return res.order_id;
     }
 
-    async getOrder(orderId, symbol) {
+    async getOrder({ orderId, symbol }) {
         const res = await this.okex.invoke('GET', `/api/spot/v3/orders/${orderId}`, {
             instrument_id: Filters.revertSymbol(symbol)
         });

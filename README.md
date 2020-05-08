@@ -81,7 +81,7 @@ If you have any other questions on APIs, you can contact us by below ways:
     * 🕐 sells(orders)
     * 🕐 order(options)
     * ✅ cancelOrder({ id, symbol })
-    * ✅ getOrder(id, symbol)
+    * ✅ getOrder({ id, symbol })
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
     * ✅ invoke({ method, path, data })
 * futures(**perpetual**)

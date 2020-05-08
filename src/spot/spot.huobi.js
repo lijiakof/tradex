@@ -113,7 +113,7 @@ module.exports = class SpotHuobi {
         
     }
 
-    async getOrder(orderId) {
+    async getOrder({ orderId }) {
         const res = await this.huobi.invoke('GET', `/v1/order/orders/${orderId}`);
 
         return Filters.convertOrder(res.data);

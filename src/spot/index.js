@@ -132,8 +132,8 @@ module.exports = class Spot {
      * @param { string } symbol - e.g.,'btc-usdt'
      * @returns { Promise<Order> }
      */
-    getOrder(orderId, symbol) { 
-        return this.spot.getOrder(orderId, symbol);
+    getOrder({ orderId, symbol }) { 
+        return this.spot.getOrder({ orderId, symbol });
     }
 
     /**

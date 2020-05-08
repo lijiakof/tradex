@@ -92,7 +92,7 @@ module.exports = class SpotBinance {
         return res.orderId;
     }
 
-    async getOrder(orderId, symbol) {
+    async getOrder({ orderId, symbol }) {
         const res = await this.binance.invoke('GET', '/api/v3/order', {
             orderId,
             symbol: Filters.revertSymbol(symbol)
