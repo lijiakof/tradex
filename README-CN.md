@@ -92,7 +92,7 @@ tradex.spot.getBalance('usdt').then(res => {
     * 🕐 order({ type, symbol, amount, price })
     * 🛠 cancelOrder({ id, symbol })
     * 🛠 getOrder({ id, symbol })
-    * 🕐 getOrders({ symbol, startTime, endTime, limit })
+    * 🚧 getOrders({ symbol, startTime, endTime, limit })
     * ✅ invoke({ method, path, data })
 
 ### Models

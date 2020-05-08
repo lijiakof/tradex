@@ -119,5 +119,16 @@ module.exports = class Futures {
         return this.futures.getOrder({ orderId, symbol });
     }
 
-    getOrders() {}
+    /**
+     * Get orders
+     * @typedef { Object } order
+     * @property { string } symbol      - e.g., 'btc-usdt'
+     * @property { number } startTime   - e.g., 1580601600000
+     * @property { number } endTime     - e.g., 1582156800000
+     * @property { number } limit       - e.g., 10
+     * @returns { Promise<Orders> }
+     */
+    getOrders({ symbol, startTime, endTime, limit }) {
+        return this.futures.getOrders({ symbol, startTime, endTime, limit });
+    }
 };

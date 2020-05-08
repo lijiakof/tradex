@@ -76,4 +76,15 @@ module.exports = class FuturesBinance {
 
         return res;
     }
+
+    async getOrders({ symbol, startTime, endTime, limit }) {
+        const res = await this.binance.invoke('GET', '/fapi/v1/allOrders', {
+            symbol: Filters.revertSymbol(symbol),
+            startTime, 
+            endTime,
+            limit
+        });
+
+        return res;
+    }
 };

@@ -137,7 +137,7 @@ module.exports = class Spot {
     }
 
     /**
-     * Get Orders
+     * Get orders
      * @typedef { Object } params
      * @property { string } symbol      - e.g., 'btc-usdt'
      * @property { number } startTime   - e.g., 1580601600000

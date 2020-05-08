@@ -83,4 +83,15 @@ module.exports = class FuturesHuobi {
 
         return res.data;
     }
+
+    async getOrders({ symbol, startTime, limit }) {
+        const res = await this.huobi.invoke('GET', '/swap-api/v1/swap_hisorders', {
+            contract_code: Filters.revertFuturesSymbol(symbol),
+            'create_date': startTime, 
+            states: '0', // TODO: revertState
+            page_size: limit
+        });
+
+        return res.data;
+    }
 };

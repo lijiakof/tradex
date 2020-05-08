@@ -73,4 +73,14 @@ module.exports = class FuturesOkex {
 
         return res.order_id;
     }
+
+    async getOrders({ symbol, limit }) {
+        const res = await this.okex.invoke('GET', `/api/swap/v3/orders/${Filters.revertFuturesSymbol(symbol)}`, {
+            instrument_id: Filters.revertSymbol(symbol),
+            state: 6, // TODO: revertState
+            limit
+        });
+
+        return res;
+    }
 };
