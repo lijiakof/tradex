@@ -43,12 +43,12 @@ module.exports = class FuturesOkex {
         return res;
     }
 
-    async order({ type, symbol, amount, price }) {
+    async order({ symbol, position, amount, price }) {
         const res = await this.huobi.invoke('POST', '/api/swap/v3/order', {
             instrument_id: Filters.revertFuturesSymbol(symbol),
             price,
             size: amount,
-            type: Filters.revertFuturesType(type),
+            type: Filters.revertFuturesPosition(position),
             // order_type: 0 // TODO
         });
 

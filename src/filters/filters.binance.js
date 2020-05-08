@@ -156,7 +156,7 @@ module.exports = class FilterBinance {
         return orders;
     }
 
-    static revertFuturesType(type) {
+    static revertFuturesPosition(type) {
         // positionSide: BOTH 单一持仓方向, LONG 多头, SHORT 空头
         // side: BUY, SELL
         const map = {

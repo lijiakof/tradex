@@ -43,8 +43,8 @@ module.exports = class FuturesBinance {
         return res;
     }
 
-    async order({ type, symbol, amount, price }) {
-        const { side, positionSide } = Filters.revertFuturesType(type);
+    async order({ symbol, position, amount, price }) {
+        const { side, positionSide } = Filters.revertFuturesPosition(position);
         
         const res = await this.binance.invoke('POST', '/fapi/v1/order', {
             symbol,

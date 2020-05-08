@@ -93,8 +93,8 @@ module.exports = class Futures {
      * @property { string|number } amount   - e.g., 
      * @returns { Promise<string|number> }
      */
-    order({ symbol, type, price, amount }) {
-        return this.futures.order({ symbol, type, price, amount });
+    order({ symbol, position, price, amount }) {
+        return this.futures.order({ symbol, position, price, amount });
     }
 
     /**

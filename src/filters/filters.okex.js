@@ -172,7 +172,7 @@ module.exports = class FilterHuobi {
 
     static revertOrder() {}
 
-    static revertFuturesType(type) {
+    static revertFuturesPosition(type) {
         const map = {
             'openlong': 1,
             'openshort': 2,

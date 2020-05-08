@@ -27,4 +27,12 @@ const tradex = new Tradex({
         limit: 3
     });
     console.log(klines);
+
+    const orderId = await tradex.futures.order({
+        symbol: 'btc-usdt',
+        type: 'openlong',
+        price: 7000,
+        amount: 0.01
+    });
+    console.log(orderId);
 })();

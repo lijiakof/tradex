@@ -51,8 +51,8 @@ module.exports = class FuturesHuobi {
         console.warn('Huobi is no "setLeverage" API!');
     }
 
-    async order({ type, symbol, amount, price }) {
-        const { offset, direction } = Filters.revertFuturesType(type);
+    async order({ symbol, position, amount, price }) {
+        const { offset, direction } = Filters.revertFuturesPosition(position);
         
         const res = await this.huobi.invoke('POST', '/swap-api/v1/swap_order', {
             contract_code: Filters.revertFuturesSymbol(symbol),
