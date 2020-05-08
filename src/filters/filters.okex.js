@@ -171,4 +171,15 @@ module.exports = class FilterHuobi {
     }
 
     static revertOrder() {}
+
+    static revertFuturesType(type) {
+        const map = {
+            'openlong': 1,
+            'openshort': 2,
+            'closelong': 3,
+            'closeshort': 4
+        };
+
+        return map[type];
+    }
 };

@@ -155,4 +155,29 @@ module.exports = class FilterBinance {
 
         return orders;
     }
+
+    static revertFuturesType(type) {
+        // positionSide: BOTH 单一持仓方向, LONG 多头, SHORT 空头
+        // side: BUY, SELL
+        const map = {
+            'openlong': {
+                side: 'BUY',
+                positionSide: 'LONG'
+            },
+            'openshort': {
+                side: 'BUY',
+                positionSide: 'SHORT'
+            },
+            'closelong': {
+                side: 'SELL',
+                positionSide: 'LONG'
+            },
+            'closeshort': {
+                side: 'SELL',
+                positionSide: 'SHORT'
+            }
+        };
+
+        return map[type];
+    }
 };

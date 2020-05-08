@@ -64,7 +64,7 @@ module.exports = class SpotOkex {
             instrument_id: Filters.revertSymbol(symbol),
             size: amount,
             price: price,
-            order_type: 1
+            // order_type: 0 // TODO
         });
 
         return res.order_id;
@@ -77,7 +77,7 @@ module.exports = class SpotOkex {
             instrument_id: Filters.revertSymbol(symbol),
             size: amount,
             price: price,
-            order_type: 1
+            // order_type: 0 // TODO
         });
 
         return res.order_id;

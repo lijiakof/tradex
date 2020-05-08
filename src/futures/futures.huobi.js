@@ -51,20 +51,21 @@ module.exports = class FuturesHuobi {
         console.warn('Huobi is no "setLeverage" API!');
     }
 
-    // async order({ type, symbol, amount, price }) {
+    async order({ type, symbol, amount, price }) {
+        const { offset, direction } = Filters.revertFuturesType(type);
+        
+        const res = await this.huobi.invoke('POST', '/swap-api/v1/swap_order', {
+            contract_code: Filters.revertFuturesSymbol(symbol),
+            price,
+            volume: amount,
+            lever_rate: 1,
+            direction,
+            offset,
+            order_price_type: 'limit'
+        });
 
-    //     const res = await this.huobi.invoke('POST', '/swap-api/v1/swap_order', {
-    //         contract_code: Filters.revertFuturesSymbol(symbol),
-    //         price,
-    //         volume: amount,
-    //         lever_rate: 1,
-    //         direction: 'sell',
-    //         offset: 'close', // 'open' or 'close'
-    //         order_price_type: 'limit'
-    //     });
-
-    //     return res.data && res.data.order_id;
-    // }
+        return res.data && res.data.order_id;
+    }
 
     async cancelOrder({ orderId, symbol }) {
         const res = await this.binance.invoke('POST', '/swap-api/v1/swap_cancel', {

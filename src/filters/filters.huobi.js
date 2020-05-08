@@ -156,4 +156,27 @@ module.exports = class FilterHuobi {
     }
 
     static revertOrder() {}
+
+    static revertFuturesType(type) {
+        const map = {
+            'openlong': {
+                offset: 'open',
+                direction: 'buy'
+            },
+            'openshort': {
+                offset: 'open',
+                direction: 'sell'
+            },
+            'closelong': {
+                offset: 'close',
+                direction: 'sell'
+            },
+            'closeshort': {
+                offset: 'close',
+                direction: 'buy'
+            }
+        };
+
+        return map[type];
+    }
 };

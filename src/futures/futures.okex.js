@@ -43,18 +43,17 @@ module.exports = class FuturesOkex {
         return res;
     }
 
-    // async order({ type, symbol, amount, price }) {
+    async order({ type, symbol, amount, price }) {
+        const res = await this.huobi.invoke('POST', '/api/swap/v3/order', {
+            instrument_id: Filters.revertFuturesSymbol(symbol),
+            price,
+            size: amount,
+            type: Filters.revertFuturesType(type),
+            // order_type: 0 // TODO
+        });
 
-    //     const res = await this.huobi.invoke('POST', '/api/swap/v3/order', {
-    //         instrument_id: Filters.revertFuturesSymbol(symbol),
-    //         price,
-    //         size: amount,
-    //         // type: ,
-    //         // order_type: 1
-    //     });
-
-    //     return res.order_id;
-    // }
+        return res.order_id;
+    }
 
     async cancelOrder({ orderId, symbol }) {
         const res = await this.okex.invoke('POST', `/api/swap/v3/cancel_order/${Filters.revertFuturesSymbol(symbol)}/${orderId}`, {

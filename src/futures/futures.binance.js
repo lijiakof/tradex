@@ -43,21 +43,21 @@ module.exports = class FuturesBinance {
         return res;
     }
 
-    // async order({ type, symbol, amount, price }) {
-    //     // positionSide: BOTH 单一持仓方向, LONG 多头, SHORT 空头
-    //     // side: BUY, SELL
-    //     const res = await this.binance.invoke('POST', '/fapi/v1/order', {
-    //         symbol,
-    //         side: 'BUY',
-    //         positionSide: position.toLocaleUpperCase(),
-    //         quantity: amount,
-    //         price,
-    //         type: 'LIMIT',
-    //         timeInForce: 'GTC'
-    //     });
+    async order({ type, symbol, amount, price }) {
+        const { side, positionSide } = Filters.revertFuturesType(type);
+        
+        const res = await this.binance.invoke('POST', '/fapi/v1/order', {
+            symbol,
+            side,
+            positionSide,
+            quantity: amount,
+            price,
+            type: 'LIMIT',
+            timeInForce: 'GTC'
+        });
 
-    //     return res.orderId;
-    // }
+        return res.orderId;
+    }
 
     async cancelOrder({ orderId, symbol }) {
         const res = await this.binance.invoke('DELETE', '/fapi/v1/order', {

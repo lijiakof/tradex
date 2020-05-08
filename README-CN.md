@@ -89,7 +89,7 @@ tradex.spot.getBalance('usdt').then(res => {
     * ✅ getDepth({ symbol, limit })
     * ✅ getKlines({ symbol, period, limit })
     * ✅ setLeverage({ symbol, leverage })
-    * 🕐 order({ type, symbol, amount, price })
+    * 🛠 order({ type, symbol, amount, price })
     * 🛠 cancelOrder({ id, symbol })
     * 🛠 getOrder({ id, symbol })
     * 🚧 getOrders({ symbol, startTime, endTime, limit })
