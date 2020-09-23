@@ -9,7 +9,7 @@ module.exports = class SpotHuobi {
     }
 
     async invoke(method, path, data) {
-        return await this.huobi(method, path, data);
+        return await this.huobi.invoke(method, path, data);
     }
 
     async getAccountId() {
