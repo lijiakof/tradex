@@ -8,6 +8,10 @@ module.exports = class SpotHuobi {
         this.huobi = new Huobi(host, apiKey, secretKey);
     }
 
+    async invoke(method, path, data) {
+        return await this.huobi(method, path, data);
+    }
+
     async getAccountId() {
         if(this.accountId) {
             return this.accountId;
